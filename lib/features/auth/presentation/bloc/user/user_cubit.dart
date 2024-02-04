@@ -61,4 +61,16 @@ class UserCubit extends Cubit<UserState> {
       emit(UserFailrue());
     }
   }
+
+  Future<void> getCurrrentUserdata() async {
+    try {
+      emit(UserLoading());
+      userData = await getCurrentUserByUidUsecase();
+      emit(UserSuccess());
+    } on SocketException catch (_) {
+      emit(UserFailrue());
+    } catch (_) {
+      emit(UserFailrue());
+    }
+  }
 }

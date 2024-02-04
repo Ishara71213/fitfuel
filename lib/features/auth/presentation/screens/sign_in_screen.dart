@@ -66,21 +66,23 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Column(
                           children: [
                             Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
-                                child: TextFormInput(
-                                  fieldName: "Email",
-                                  controller: _emailController,
-                                  hintText: "Email",
-                                  prefixIcon: const Icon(Icons.email),
-                                )),
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: TextFormInput(
+                                fieldName: "Email",
+                                controller: _emailController,
+                                hintText: "Email",
+                                prefixIcon: const Icon(Icons.email),
+                              ),
+                            ),
                             Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
-                                child: TextFormInput(
-                                  fieldName: "Password",
-                                  hintText: "Password",
-                                  controller: _passwordController,
-                                  prefixIcon: const Icon(Icons.lock),
-                                )),
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: TextFormInput(
+                                fieldName: "Password",
+                                hintText: "Password",
+                                controller: _passwordController,
+                                prefixIcon: const Icon(Icons.lock),
+                              ),
+                            ),
                             BlocBuilder<UserCubit, UserState>(
                               builder: (context, state) {
                                 return FilledButtonWithLoader(

@@ -1,6 +1,7 @@
 class RouteConst {
   static const String initialRoute = '/';
   static const String splashScreen = '/splashScreen';
+  static const String splashDataLoadScreen = '/splashDataLoadScreen';
   static const String signInScreen = '/signInScreen';
   static const String signUpScreen = '/signUpScreen';
 

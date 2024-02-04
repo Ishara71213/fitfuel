@@ -1,6 +1,7 @@
 import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/core/common/presentation/screens/error_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen.dart';
+import 'package:fitfuel/core/common/presentation/screens/splash_screen_data_loader.dart';
 import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
@@ -18,6 +19,9 @@ class OnGenerateRoute {
         return materialBuilder(widget: const HomeScreen(), route: routeName);
       case RouteConst.splashScreen:
         return materialBuilder(widget: const SplashScreen(), route: routeName);
+      case RouteConst.splashDataLoadScreen:
+        return materialBuilder(
+            widget: const SplashDataLoadScreen(), route: routeName);
       case RouteConst.signInScreen:
         return materialBuilderAuthScreens(
             widget: const SignInScreen(), route: routeName);
@@ -56,7 +60,7 @@ MaterialPageRoute materialBuilderAuthScreens(
           // if (previousRouteName == RouteConst.signUpScreen) {
           //   return const UserInfoInitialScreen();
           // }
-          return const HomeScreen();
+          return const SplashDataLoadScreen();
         } else if (state is UnAuthenticated) {
           return widget;
         } else {

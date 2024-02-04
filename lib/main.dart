@@ -4,6 +4,7 @@ import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/features/app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
+import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitfuel/core/utils/di_container.dart' as di;
@@ -26,6 +27,7 @@ class FitFuelApp extends StatelessWidget {
             create: (_) => di.sl<AuthCubit>()..appStarted()),
         BlocProvider<UserCubit>(create: (_) => di.sl<UserCubit>()),
         BlocProvider<ProfileCubit>(create: (_) => di.sl<ProfileCubit>()),
+        BlocProvider<ClubsCubit>(create: (_) => di.sl<ClubsCubit>()),
       ],
       child: const MaterialApp(
         title: 'Fit Fule',
