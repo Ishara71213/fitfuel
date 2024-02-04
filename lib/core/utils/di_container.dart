@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitfuel/features/app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:fitfuel/features/auth/data/data_sources/remote/auth_firebase_remote_data_source.dart';
 import 'package:fitfuel/features/auth/data/data_sources/remote/auth_firebase_remote_data_source_impl.dart';
 import 'package:fitfuel/features/auth/data/repository_impl/auth_repository_impl.dart';
@@ -30,6 +31,8 @@ Future<void> init() async {
       createUserUsecase: sl.call(),
       getCurrentUIdUsecase: sl.call(),
       getCurrentUserByUidUsecase: sl.call()));
+
+  sl.registerFactory<ProfileCubit>(() => ProfileCubit());
 
   //usecase
   sl.registerLazySingleton<SignInUsecase>(
