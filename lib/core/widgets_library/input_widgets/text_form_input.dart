@@ -62,13 +62,38 @@ class TextFormInput extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
         hintText: hintText,
-        prefixIconColor: DarkTheme.inputBoxTextColor,
-        hintStyle: TextStyle(color: DarkTheme.inputBoxTextColor),
+        prefixIconColor: DarkTheme.kGreyMediumShade,
+        hintStyle: TextStyle(color: DarkTheme.kGreyMediumShade),
         prefixIcon: prefixIcon,
         filled: true,
         fillColor: fillColor ?? DarkTheme.kDarkerGreyShade,
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+                width: 2,
+                style: BorderStyle.solid,
+                color: DarkTheme.kGreyMediumShade)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+                width: 2,
+                style: BorderStyle.solid,
+                color: DarkTheme.kErrorColor)),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+                width: 2,
+                style: BorderStyle.solid,
+                color: DarkTheme.kErrorColor)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(
+              width: 1.4,
+              style: BorderStyle.solid,
+              color: DarkTheme.kDarkerGreyShade),
+        ),
       ),
     );
   }

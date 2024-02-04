@@ -65,7 +65,7 @@ class _DateScrollSelectorInputState extends State<DateScrollSelectorInput> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      height: 300,
+                      height: 200,
                       child: CupertinoDatePicker(
                           backgroundColor: Colors.white,
                           initialDateTime: dateTime,
@@ -86,9 +86,11 @@ class _DateScrollSelectorInputState extends State<DateScrollSelectorInput> {
                 ))
       },
       decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
           hintText: widget.hintText,
           prefixIcon: widget.prefixIcon,
-          prefixIconColor: DarkTheme.kGreyColor,
+          prefixIconColor: DarkTheme.kGreyMediumShade,
           hintStyle: kInputFieldHintText,
           filled: true,
           fillColor: DarkTheme.kDarkerGreyShade,
@@ -97,7 +99,7 @@ class _DateScrollSelectorInputState extends State<DateScrollSelectorInput> {
               borderSide: BorderSide(
                   width: 2,
                   style: BorderStyle.solid,
-                  color: DarkTheme.kGreyLightShade)),
+                  color: DarkTheme.kGreyMediumShade)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(
@@ -115,7 +117,7 @@ class _DateScrollSelectorInputState extends State<DateScrollSelectorInput> {
               borderSide: BorderSide(
                   width: 1.4,
                   style: BorderStyle.solid,
-                  color: DarkTheme.kGreyLightShade))),
+                  color: DarkTheme.kDarkerGreyShade))),
     );
   }
 }
