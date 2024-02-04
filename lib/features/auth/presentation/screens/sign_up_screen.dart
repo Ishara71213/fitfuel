@@ -62,6 +62,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         key: formKeySignUp,
                         child: Column(
                           children: [
+                            SizedBox(
+                              child: Image.asset(
+                                "assets/images/logo-dark.png",
+                                height: 140,
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 25,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 20.0),
                               child: Text("Create Account", style: kTitlText),
@@ -131,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 10.0,
                     ),
                     SizedBox(
-                      height: 40.0,
+                      height: 20.0,
                       child: BlocBuilder<UserCubit, UserState>(
                         builder: (context, state) {
                           return (state is UserFailrue)
@@ -151,29 +161,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 6.0,
-                    ),
-                    const SizedBox(
-                      height: 38.0,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Already have an account?",
-                              style: kBlackSmalltextStyle),
+                              style: kSmalltextStyle),
                           const SizedBox(width: 4.0),
                           TextButton(
-                              onPressed: () {
-                                NavigationHandler.navigateWithRemovePrevRoute(
-                                    context, RouteConst.signInScreen);
-                              },
-                              child: Text(
-                                "Sign In",
-                                style: kPrimarySmalltextStyle,
-                              ))
+                            onPressed: () {
+                              NavigationHandler.navigateWithRemovePrevRoute(
+                                  context, RouteConst.signInScreen);
+                            },
+                            child: Text(
+                              "Sign In",
+                              style: kPrimarySmalltextStyle,
+                            ),
+                          )
                         ],
                       ),
                     )

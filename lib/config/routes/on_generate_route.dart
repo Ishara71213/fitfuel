@@ -5,6 +5,7 @@ import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:fitfuel/features/clubs/presentation/screens/find_club_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,6 +25,14 @@ class OnGenerateRoute {
         return materialBuilderAuthScreens(
             widget: const SignUpScreen(), route: routeName);
       case RouteConst.homeScreen:
+        return materialBuilder(widget: const HomeScreen(), route: routeName);
+      case RouteConst.findClubScreen:
+        return materialBuilder(
+            widget: const FindClubScreen(), route: routeName);
+      case RouteConst.clubDetailScreen:
+        return materialBuilder(
+            widget: const FindClubScreen(), route: routeName);
+      case RouteConst.settingsScreen:
         return materialBuilder(widget: const HomeScreen(), route: routeName);
 
       //error page

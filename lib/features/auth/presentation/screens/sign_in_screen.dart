@@ -8,7 +8,6 @@ import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -51,14 +50,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // Image.asset(
-                    //   "assets/images/signin-page-image.png",
-                    //   alignment: Alignment.center,
-                    //   scale: 1,
-                    // ),
-                    SvgPicture.asset(
-                      'assets/icons/logo-dark.svg',
-                      height: 180,
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    Image.asset(
+                      "assets/images/logo-dark.png",
+                      alignment: Alignment.center,
+                      scale: 0.5,
+                    ),
+                    const SizedBox(
+                      height: 40,
                     ),
                     Form(
                         key: formKeySignIn,
@@ -105,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 10.0,
                     ),
                     SizedBox(
-                      height: 40.0,
+                      height: 30.0,
                       child: BlocBuilder<UserCubit, UserState>(
                         builder: (context, state) {
                           return (state is UserFailrue)
@@ -125,19 +126,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 6.0,
-                    ),
-                    const SizedBox(
-                      height: 28.0,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 18.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Already have an account?",
-                              style: kBlackSmalltextStyle),
+                              style: kSmalltextStyle),
                           const SizedBox(width: 4.0),
                           TextButton(
                               onPressed: () {
