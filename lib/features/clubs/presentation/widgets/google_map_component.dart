@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -56,9 +57,15 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
                 position: currentLocation,
                 infoWindow: const InfoWindow(title: 'Current Location'),
               ),
+              ...clubsCubit.markers
             },
-            onMapCreated: (GoogleMapController controller) {
+            onMapCreated: (GoogleMapController controller) async {
+              String darkMapStyle =
+                  await rootBundle.loadString('assets/json/map_style.json');
               _controller.complete(controller);
+              _controller.future.then((value) {
+                value.setMapStyle(darkMapStyle);
+              });
             },
           );
         },

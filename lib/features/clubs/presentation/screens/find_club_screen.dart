@@ -23,7 +23,7 @@ class _FindClubScreenState extends State<FindClubScreen> {
   void initState() {
     super.initState();
     clubsCubit = BlocProvider.of<ClubsCubit>(context);
-    clubsCubit.loadClubs();
+    clubsCubit.init();
   }
 
   @override
@@ -44,7 +44,7 @@ class _FindClubScreenState extends State<FindClubScreen> {
           child: Stack(
             children: [
               GoogleMapComponent(
-                height: size.height - 400,
+                height: size.height - 450,
               )
             ],
           ),

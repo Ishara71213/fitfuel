@@ -27,8 +27,8 @@ class _AppBarCustomState extends State<AppBarCustom> {
       decoration: BoxDecoration(
         border: BorderDirectional(
           bottom: BorderSide(
-            width: 1,
-            color: DarkTheme.kDarkGreyShade,
+            width: 0.7,
+            color: DarkTheme.kDarkerGreyShade,
           ),
         ),
       ),
@@ -73,11 +73,11 @@ class _AppBarCustomState extends State<AppBarCustom> {
                                       minRadius: 25,
                                       maxRadius: 25,
                                       backgroundColor:
-                                          DarkTheme.kGreyLightShade,
+                                          DarkTheme.kDarkerGreyShade,
                                       //foregroundImage: Image.memory(bytes),
                                       child: Icon(
                                         Icons.person,
-                                        color: DarkTheme.kGreyColor,
+                                        color: DarkTheme.kDarkGreyShade,
                                         size: 35,
                                       ),
                                     )
@@ -85,10 +85,10 @@ class _AppBarCustomState extends State<AppBarCustom> {
                                       minRadius: 25,
                                       maxRadius: 25,
                                       backgroundColor:
-                                          DarkTheme.kGreyLightShade,
+                                          DarkTheme.kDarkerGreyShade,
                                       child: Icon(
                                         Icons.person,
-                                        color: DarkTheme.kGreyColor,
+                                        color: DarkTheme.kDarkGreyShade,
                                         size: 35,
                                       ),
                                     ),
@@ -103,13 +103,13 @@ class _AppBarCustomState extends State<AppBarCustom> {
                                     "Hi ${userCubit.userData?.firstName ?? ""}",
                                     style: TextStyle(
                                         color: DarkTheme.inputBoxTextColor,
-                                        fontSize: 18),
+                                        fontSize: 16),
                                   ),
                                   Text(
                                     "Good Morning",
                                     style: TextStyle(
                                         color: DarkTheme.inputBoxTextColor,
-                                        fontSize: 18),
+                                        fontSize: 14),
                                   )
                                 ],
                               ),
@@ -130,9 +130,9 @@ class _AppBarCustomState extends State<AppBarCustom> {
                     padding: const EdgeInsets.all(0.0),
                     child: SvgPicture.asset(
                       'assets/icons/settings.svg',
-                      height: 48,
+                      height: 34,
                       colorFilter: ColorFilter.mode(
-                          DarkTheme.kGreyColor, BlendMode.srcIn),
+                          DarkTheme.kGreyMediumShade, BlendMode.srcIn),
                     ),
                   ),
                 ),

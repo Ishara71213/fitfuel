@@ -21,12 +21,38 @@ class ClubsCubit extends Cubit<ClubsState> {
 
   LatLng? currentLocationTemp;
   List<ClubEntity> clubsList = [];
+  Set<Marker> markers = {};
+  BitmapDescriptor gymMarkerIcon = BitmapDescriptor.defaultMarker;
+
+  void init() {
+    loadClubs();
+    createCustomMarker();
+  }
+
+  void createCustomMarker() {
+    BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(), "assets/images/marker_gym.png",
+            mipmaps: true)
+        .then((icon) => gymMarkerIcon = icon);
+  }
 
   Future<void> loadClubs() async {
     try {
       if (clubsList.isNotEmpty) return;
       emit(ClubLoading());
       clubsList = await _getAllClubsUsecase.call();
+      for (ClubEntity club in clubsList) {
+        markers.add(
+          Marker(
+            markerId: MarkerId(club.clubName.toString()),
+            position: LatLng(
+                club.clubCoordinates.latitude, club.clubCoordinates.longitude),
+            infoWindow:
+                InfoWindow(title: club.clubName, snippet: club.clubName),
+            icon: gymMarkerIcon,
+          ),
+        );
+      }
       emit(ClubLoadingSuccess());
     } on SocketException catch (_) {
       emit(ClubLoadingFailed());
