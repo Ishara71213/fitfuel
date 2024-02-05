@@ -5,7 +5,7 @@ class DarkTheme {
   static Color kPrimaryColor = const Color(0xFF78060D);
   static Color kPrimaryMediumShade = const Color(0xFFFFCACA);
 
-  static Color kAppBgColor = const Color(0xFF0E0E0E);
+  static Color kAppBgColor = const Color(0xFF0b0b0b);
   static Color kAppBgMediumShade = const Color(0xFFF7F7F7);
   static Color kAppBgDarkShade = const Color(0xFFF1F1F1);
 
