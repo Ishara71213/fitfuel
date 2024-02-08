@@ -86,7 +86,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/animations/
     - assets/json/map_style.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
