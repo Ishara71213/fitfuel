@@ -12,4 +12,5 @@ class RouteConst {
   static const String clubDetailScreen = '/clubDetailScreen';
   static const String scheduleScreen = '/scheduleScreen';
   static const String dietPlanScreen = '/dietPlanScreen';
+  static const String filterDietPlanScreen = '/filterDietPlanScreen';
 }
