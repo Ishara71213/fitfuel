@@ -29,11 +29,13 @@ class FitFuelApp extends StatelessWidget {
         BlocProvider<ProfileCubit>(create: (_) => di.sl<ProfileCubit>()),
         BlocProvider<ClubsCubit>(create: (_) => di.sl<ClubsCubit>()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         title: 'Fit Fule',
         debugShowCheckedModeBanner: false,
         initialRoute: RouteConst.initialRoute,
         onGenerateRoute: OnGenerateRoute.route,
+        theme: ThemeData.dark(useMaterial3: true),
+        themeMode: ThemeMode.dark,
         home: null,
       ),
     );

@@ -3,6 +3,7 @@ import 'package:fitfuel/core/common/presentation/screens/error_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen_data_loader.dart';
 import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
+import 'package:fitfuel/features/app/presentation/screens/setting_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
@@ -38,9 +39,10 @@ class OnGenerateRoute {
         return materialBuilder(
             widget: const FindClubScreen(), route: routeName);
       case RouteConst.settingsScreen:
-        return materialBuilder(widget: const HomeScreen(), route: routeName);
+         return materialBuilder(widget: const SettingScreen(), route: routeName);
       case RouteConst.scheduleScreen:
         return materialBuilder(widget: const FindScheduleScreen(), route: routeName);
+
       //error page
       default:
         return MaterialPageRoute(builder: (context) => const ErrorScreen());
