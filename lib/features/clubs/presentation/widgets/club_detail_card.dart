@@ -1,4 +1,6 @@
+import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
+import 'package:fitfuel/core/utils/navigation_handler.dart';
 import 'package:fitfuel/core/widgets_library/widgets_library.dart';
 import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,10 @@ class ClubDetailCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       child: ListTile(
+        onTap: () {
+          NavigationHandler.navigateWithArgumnets(
+              context, RouteConst.clubDetailScreen, {"club": club});
+        },
         trailing: CachedNetworkImageClipRect(
           height: 60,
           width: 60,

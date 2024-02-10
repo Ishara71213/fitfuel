@@ -4,17 +4,18 @@ import 'package:fitfuel/core/utils/subscriptions_plans.dart';
 import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
 
 class ClubModel extends ClubEntity {
-  const ClubModel({
-    required String clubName,
-    required String address,
-    required String closeTime,
-    required Cordinates clubCoordinates,
-    required int maxMembersAtTime,
-    required int currentMembers,
-    required List<String> images,
-    required String openTime,
-    required List<SubscriptionPlans> subscriptionPlans,
-  }) : super(
+  const ClubModel(
+      {required String clubName,
+      required String address,
+      required String closeTime,
+      required Cordinates clubCoordinates,
+      required int maxMembersAtTime,
+      required int currentMembers,
+      required List<String> images,
+      required String openTime,
+      required List<SubscriptionPlans> subscriptionPlans,
+      required bool isSaved})
+      : super(
           address: address,
           closeTime: closeTime,
           clubCoordinates: clubCoordinates,
@@ -24,6 +25,7 @@ class ClubModel extends ClubEntity {
           images: images,
           openTime: openTime,
           subscriptionPlans: subscriptionPlans,
+          isSaved: isSaved,
         );
 
   // Convert to ClubModel from Firebase document
@@ -49,6 +51,7 @@ class ClubModel extends ClubEntity {
           ),
         ),
       ),
+      isSaved: false,
     );
   }
 
@@ -89,6 +92,7 @@ class ClubModel extends ClubEntity {
       images: images,
       openTime: openTime,
       subscriptionPlans: subscriptionPlans,
+      isSaved: isSaved,
     );
   }
 }

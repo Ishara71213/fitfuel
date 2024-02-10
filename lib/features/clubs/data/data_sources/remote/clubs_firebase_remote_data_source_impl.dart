@@ -19,8 +19,8 @@ class ClubsFirebaseRemoteDataSourceImpl
         firestore.collection(FirebaseCollections.clubs);
     try {
       QuerySnapshot querySnapshot = await clubsCollectionRef.get();
-      List<ClubModel> clubsList = querySnapshot.docs.map((doc) {
-        return ClubModel.fromSnapshot(doc);
+      List<ClubEntity> clubsList = querySnapshot.docs.map((doc) {
+        return ClubModel.fromSnapshot(doc).toEntity();
       }).toList();
 
       return clubsList;

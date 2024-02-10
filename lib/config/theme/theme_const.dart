@@ -55,6 +55,18 @@ TextStyle kDarkGreySmalltextStyle = GoogleFonts.poppins(
   color: DarkTheme.kDarkGreyShade,
 );
 
+TextStyle kGreySmalltextStyle = GoogleFonts.poppins(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: DarkTheme.kGreyColor,
+);
+
+TextStyle kGreySmallesttextStyle = GoogleFonts.poppins(
+  fontSize: 11,
+  fontWeight: FontWeight.w400,
+  color: DarkTheme.kGreyColor,
+);
+
 TextStyle kSmalltextStyle = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.w600,

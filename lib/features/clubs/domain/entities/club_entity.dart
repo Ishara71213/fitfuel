@@ -12,18 +12,19 @@ class ClubEntity extends Equatable {
   final List<String> images;
   final String openTime;
   final List<SubscriptionPlans> subscriptionPlans;
+  final bool isSaved;
 
-  const ClubEntity({
-    required this.address,
-    required this.closeTime,
-    required this.clubCoordinates,
-    required this.clubName,
-    required this.maxMembersAtTime,
-    required this.currentMembers,
-    required this.images,
-    required this.openTime,
-    required this.subscriptionPlans,
-  });
+  const ClubEntity(
+      {required this.address,
+      required this.closeTime,
+      required this.clubCoordinates,
+      required this.clubName,
+      required this.maxMembersAtTime,
+      required this.currentMembers,
+      required this.images,
+      required this.openTime,
+      required this.subscriptionPlans,
+      required this.isSaved});
 
   @override
   List<Object?> get props => [
@@ -36,5 +37,6 @@ class ClubEntity extends Equatable {
         images,
         openTime,
         subscriptionPlans,
+        isSaved
       ];
 }
