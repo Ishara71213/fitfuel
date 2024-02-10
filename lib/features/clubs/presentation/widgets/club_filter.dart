@@ -1,4 +1,5 @@
 import 'package:fitfuel/config/theme/theme_const.dart';
+import 'package:fitfuel/core/components/slider_bar_with_label.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,8 @@ class ClubsFilter extends StatefulWidget {
 
 class _ClubsFilterState extends State<ClubsFilter> {
   late ClubsCubit clubsCubit;
-
+  double currentDistanceValue = 100;
+  double currentCrowdValue = 100;
   @override
   void initState() {
     super.initState();
@@ -24,6 +26,7 @@ class _ClubsFilterState extends State<ClubsFilter> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return SizedBox(
       height: size.height - 160,
       child: Column(
@@ -31,7 +34,7 @@ class _ClubsFilterState extends State<ClubsFilter> {
         children: [
           Container(
             color: DarkTheme.kDarkerGreyShade,
-            height: size.height - 400,
+            height: size.height - 384,
             child: Column(
               children: [
                 Padding(
@@ -61,6 +64,82 @@ class _ClubsFilterState extends State<ClubsFilter> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                SliderBarWithLabel(
+                  label: "Distance",
+                  currentValue: currentDistanceValue,
+                  labelSufixMetrics: " km",
+                  onChangeCallBack: (value) {
+                    setState(() {
+                      currentDistanceValue = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
+                SliderBarWithLabel(
+                  label: "Crowd",
+                  currentValue: currentCrowdValue,
+                  steps: 5,
+                  labelSufixMetrics: "%",
+                  onChangeCallBack: (value) {
+                    setState(() {
+                      currentCrowdValue = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: () {
+                            clubsCubit.setFilter(
+                                currentDistanceValue, currentCrowdValue);
+                          },
+                          style: FilledButton.styleFrom(
+                            backgroundColor: DarkTheme.kPrimaryColor,
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 28.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          child: Text(
+                            "Filter Clubs",
+                            style: kSmalltextStyle,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: () {
+                            setState(() {
+                              currentCrowdValue = 100;
+                              currentDistanceValue = 100;
+                            });
+                            clubsCubit.clearFilter();
+                          },
+                          style: FilledButton.styleFrom(
+                            backgroundColor: const Color(0XFF202020),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 28.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          child: Text(
+                            "Clear Filter",
+                            style: kSmalltextStyle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

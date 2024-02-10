@@ -25,8 +25,8 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
 
   void init(BuildContext context) async {
     clubsCubit = BlocProvider.of<ClubsCubit>(context);
-    await clubsCubit.checkIsLocationServiceEnabled(context);
-    await clubsCubit.determinePosition();
+    // await clubsCubit.checkIsLocationServiceEnabled(context);
+    // await clubsCubit.determinePosition();
   }
 
   @override

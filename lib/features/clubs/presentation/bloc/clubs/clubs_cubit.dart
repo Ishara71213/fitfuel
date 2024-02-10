@@ -22,11 +22,16 @@ class ClubsCubit extends Cubit<ClubsState> {
   LatLng? currentLocationTemp;
   LatLng currentLocation = const LatLng(6.888801846911015, 79.85811646338293);
   List<ClubEntity> clubsList = [];
+  List<ClubEntity> clubsListTemp = [];
   Set<Marker> markers = {};
   BitmapDescriptor gymMarkerIcon = BitmapDescriptor.defaultMarker;
+
+  //Filter Variables
   bool isFilterOpen = false;
   double bottomDetailOffsetx = 0;
   double filterOffsetx = 1;
+
+  double crowdSlider = 0;
 
   void init() {
     loadClubs();
@@ -47,6 +52,42 @@ class ClubsCubit extends Cubit<ClubsState> {
     }
   }
 
+  void setFilter(double distance, double gymMaxCrowd) {
+    emit(ClubsInitial());
+    clubsList = clubsListTemp;
+    clubsList = clubsList
+        .where(
+            (e) => (e.currentMembers / e.maxMembersAtTime) * 100 <= gymMaxCrowd)
+        .toList();
+    if (distance != 100) {
+      clubsList = clubsList
+          .where((e) => (getDistanceInKm(currentLocation,
+                  e.clubCoordinates.latitude, e.clubCoordinates.longitude) <=
+              distance.round()))
+          .toList();
+    }
+    addMarkers(clubsList);
+    toggleFilter('close');
+    emit(FilterClubs());
+  }
+
+  void clearFilter() {
+    clubsList = clubsListTemp;
+    addMarkers(clubsList);
+    toggleFilter('close');
+    emit(ClubsInitial());
+  }
+
+  double getDistanceInKm(LatLng currentLocation, endLatitude, endLongitude) {
+    double distance = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      endLatitude,
+      endLongitude,
+    );
+    return distance != 0 ? distance / 1000 : 0;
+  }
+
   void createCustomMarker() {
     BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(), "assets/images/marker_gym.png",
@@ -54,23 +95,28 @@ class ClubsCubit extends Cubit<ClubsState> {
         .then((icon) => gymMarkerIcon = icon);
   }
 
+  void addMarkers(List<ClubEntity> clubsList) {
+    markers = {};
+    for (ClubEntity club in clubsList) {
+      markers.add(
+        Marker(
+          markerId: MarkerId(club.clubName.toString()),
+          position: LatLng(
+              club.clubCoordinates.latitude, club.clubCoordinates.longitude),
+          infoWindow: InfoWindow(title: club.clubName, snippet: club.clubName),
+          icon: gymMarkerIcon,
+        ),
+      );
+    }
+  }
+
   Future<void> loadClubs() async {
     try {
       if (clubsList.isNotEmpty) return;
       emit(ClubLoading());
       clubsList = await _getAllClubsUsecase.call();
-      for (ClubEntity club in clubsList) {
-        markers.add(
-          Marker(
-            markerId: MarkerId(club.clubName.toString()),
-            position: LatLng(
-                club.clubCoordinates.latitude, club.clubCoordinates.longitude),
-            infoWindow:
-                InfoWindow(title: club.clubName, snippet: club.clubName),
-            icon: gymMarkerIcon,
-          ),
-        );
-      }
+      clubsListTemp = clubsList;
+      addMarkers(clubsList);
       emit(ClubLoadingSuccess());
     } on SocketException catch (_) {
       emit(ClubLoadingFailed());
