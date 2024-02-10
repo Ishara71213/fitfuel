@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitfuel/core/constants/firebase_collections.dart';
 import 'package:fitfuel/features/clubs/data/data_sources/remote/clubs_firebase_remote_data_source.dart';
 import 'package:fitfuel/features/clubs/data/models/club_model.dart';
 import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
@@ -14,7 +15,8 @@ class ClubsFirebaseRemoteDataSourceImpl
 
   @override
   Future<List<ClubEntity>> getAllClubs() async {
-    CollectionReference clubsCollectionRef = firestore.collection('clubs');
+    CollectionReference clubsCollectionRef =
+        firestore.collection(FirebaseCollections.clubs);
     try {
       QuerySnapshot querySnapshot = await clubsCollectionRef.get();
       List<ClubModel> clubsList = querySnapshot.docs.map((doc) {

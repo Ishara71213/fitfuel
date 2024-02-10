@@ -9,7 +9,7 @@ class ClubEntity extends Equatable {
   final String clubName;
   final List<String> images;
   final String openTime;
-  final SubscriptionPlans subscriptionPlans;
+  final List<SubscriptionPlans> subscriptionPlans;
 
   const ClubEntity({
     required this.address,

@@ -17,7 +17,8 @@ class OnGenerateRoute {
     String routeName = settings.name.toString();
     switch (settings.name) {
       case RouteConst.initialRoute:
-        return materialBuilder(widget: const HomeScreen(), route: routeName);
+        return materialBuilder(
+            widget: const SplashDataLoadScreen(), route: routeName);
       case RouteConst.splashScreen:
         return materialBuilder(widget: const SplashScreen(), route: routeName);
       case RouteConst.splashDataLoadScreen:

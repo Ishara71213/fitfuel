@@ -22,7 +22,7 @@ class CachedNetworkImageWidget extends StatelessWidget {
         child: Center(
           child: CircularProgressIndicator(
             backgroundColor: DarkTheme.kGreyColor,
-            color: Theme.of(context).colorScheme.primary,
+            color: DarkTheme.kGreyColor,
             value: progress.progress,
           ),
         ),
