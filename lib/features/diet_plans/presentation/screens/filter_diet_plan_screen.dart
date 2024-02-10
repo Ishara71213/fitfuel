@@ -46,6 +46,7 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const SizedBox(height: 20),
                       const Text(
                         'Age Range',
                         style: TextStyle(

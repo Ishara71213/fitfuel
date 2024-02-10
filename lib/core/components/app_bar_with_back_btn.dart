@@ -11,29 +11,39 @@ class AppBarWithBackBtn extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(
-        title,
-        style: GoogleFonts.roboto(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: DarkTheme.kGreyColor,
+    return Container(
+      decoration: BoxDecoration(
+        border: BorderDirectional(
+          bottom: BorderSide(
+            width: 0.7,
+            color: DarkTheme.kDarkerGreyShade,
+          ),
         ),
-        textAlign: TextAlign.center,
       ),
-      toolbarHeight: 80,
-      centerTitle: true,
-      elevation: 0,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios_rounded,
-          color: DarkTheme.kGreyColor,
+      child: AppBar(
+        title: Text(
+          title,
+          style: GoogleFonts.roboto(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: DarkTheme.kGreyColor,
+          ),
+          textAlign: TextAlign.center,
         ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        toolbarHeight: 80,
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: DarkTheme.kGreyColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: DarkTheme.kBlackMediumShade,
       ),
-      backgroundColor: DarkTheme.kBlackMediumShade,
     );
   }
 }

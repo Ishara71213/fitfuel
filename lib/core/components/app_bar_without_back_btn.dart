@@ -12,21 +12,31 @@ class AppBarWithoutBackBtn extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(
-        title,
-        style: GoogleFonts.roboto(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: DarkTheme.kGreyColor,
+    return Container(
+      decoration: BoxDecoration(
+        border: BorderDirectional(
+          bottom: BorderSide(
+            width: 0.7,
+            color: DarkTheme.kDarkerGreyShade,
+          ),
         ),
-        textAlign: TextAlign.center,
       ),
-      toolbarHeight: 80,
-      centerTitle: true,
-      elevation: 0,
-      automaticallyImplyLeading: false,
-      backgroundColor: DarkTheme.kBlackMediumShade,
+      child: AppBar(
+        title: Text(
+          title,
+          style: GoogleFonts.roboto(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: DarkTheme.kGreyColor,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        toolbarHeight: 80,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: DarkTheme.kBlackMediumShade,
+      ),
     );
   }
 }

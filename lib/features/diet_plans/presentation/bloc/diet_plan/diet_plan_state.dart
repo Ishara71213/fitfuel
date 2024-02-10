@@ -8,5 +8,3 @@ abstract class DietPlanState extends Equatable {
 }
 
 class DietPlanInitial extends DietPlanState {}
-
-// Add more state classes as needed based on your requirements
