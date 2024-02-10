@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitfuel/core/constants/firebase_collections.dart';
 import 'dart:developer' as dev;
 
 import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source.dart';
@@ -12,9 +13,10 @@ class DietPlanFirebaseRemoteDataSourceImpl
 
   @override
   Future<List<DietPlanEntity>> getAllDietPlans() async {
-    CollectionReference clubsCollectionRef = firestore.collection('clubs');
+    CollectionReference dietPlansCollectionRef =
+        firestore.collection(FirebaseCollections.dietPlans);
     try {
-      QuerySnapshot querySnapshot = await clubsCollectionRef.get();
+      QuerySnapshot querySnapshot = await dietPlansCollectionRef.get();
       List<DietPlanModel> dietPlanList = querySnapshot.docs.map((doc) {
         return DietPlanModel.fromSnapshot(doc);
       }).toList();

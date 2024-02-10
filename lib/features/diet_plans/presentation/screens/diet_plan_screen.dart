@@ -1,3 +1,4 @@
+import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:fitfuel/core/components/app_bar_without_back_btn.dart';
 import 'package:fitfuel/config/routes/route_const.dart';
@@ -6,6 +7,7 @@ import 'package:fitfuel/core/widgets_library/button_widgets/button_widgets_libra
 import 'package:fitfuel/config/theme/theme_const.dart';
 import 'package:fitfuel/core/components/custom_nav_bar.dart';
 import 'package:fitfuel/core/enums/diet_plan.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DietPlanScreen extends StatefulWidget {
@@ -19,6 +21,18 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
   DietType? _selectedDietType;
   AgeRange? _selectedAgeRange;
   WeightRange? _selectedWeightRange;
+  late DietPlanCubit dietPlanCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    dietPlanCubit = BlocProvider.of<DietPlanCubit>(context);
+    init();
+  }
+
+  void init() async {
+    await dietPlanCubit.getAllDietPlans();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -357,7 +371,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                   children: [
                     Text(
                       'For ${meal['mealType']} Meal',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text('${meal['quantity']} of ${meal['foodName']}'),
                     // Text('Quantity: ${meal['quantity']}'),

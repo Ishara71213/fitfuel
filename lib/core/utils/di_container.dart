@@ -25,6 +25,8 @@ import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_fi
 import 'package:fitfuel/features/diet_plans/data/repository_impl/dietplan_repository_impl.dart';
 import 'package:fitfuel/features/diet_plans/domain/repository/dietplan_repository.dart';
 import 'package:fitfuel/features/diet_plans/domain/usecases/get_all_clubs_usecase.dart';
+import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
+import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_plan_screen.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt sl = GetIt.instance;
@@ -47,6 +49,10 @@ Future<void> init() async {
       () => ClubsCubit(getAllClubsUsecase: sl.call()));
 
   sl.registerFactory<ProfileCubit>(() => ProfileCubit());
+
+  sl.registerFactory<DietPlanCubit>(
+      () => DietPlanCubit(dietPlansUsecase: sl.call()));
+  sl.registerFactory<FilterDietPlanScreen>(() => const FilterDietPlanScreen());
 
   //usecase
   //Auth Usecase

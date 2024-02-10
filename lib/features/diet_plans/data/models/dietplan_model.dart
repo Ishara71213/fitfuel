@@ -7,7 +7,7 @@ class DietPlanModel extends DietPlanEntity {
     required String weightRange,
     required String dietType,
     required String description,
-    required Map<String, List<Map<String, dynamic>>> meals,
+    required Map<String, List<dynamic>> meals,
   }) : super(
           ageRange: ageRange,
           weightRange: weightRange,
@@ -23,8 +23,7 @@ class DietPlanModel extends DietPlanEntity {
       weightRange: documentSnapshot.get("weightRange"),
       dietType: documentSnapshot.get("dietType"),
       description: documentSnapshot.get("description"),
-      meals: Map<String, List<Map<String, dynamic>>>.from(
-          documentSnapshot.get("meals")),
+      meals: Map<String, List<dynamic>>.from(documentSnapshot.get("meals")),
     );
   }
 

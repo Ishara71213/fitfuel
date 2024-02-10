@@ -5,7 +5,7 @@ class DietPlanEntity extends Equatable {
   final String weightRange;
   final String dietType;
   final String description;
-  final Map<String, List<Map<String, dynamic>>> meals;
+  final Map<String, List<dynamic>> meals;
 
   const DietPlanEntity({
     required this.ageRange,
