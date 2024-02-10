@@ -2,13 +2,13 @@ import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/core/common/presentation/screens/error_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen_data_loader.dart';
-import 'package:fitfuel/features/app/presentation/screens/diet_plan_screen.dart';
-import 'package:fitfuel/features/app/presentation/screens/filter_diet_plan_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/screens/find_club_screen.dart';
+import 'package:fitfuel/features/diet_plans/presentation/screens/diet_plan_screen.dart';
+import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_plan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

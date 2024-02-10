@@ -1,9 +1,9 @@
+import 'package:fitfuel/core/components/app_bar_without_back_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
 import 'package:fitfuel/core/widgets_library/button_widgets/button_widgets_library.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
-import 'package:fitfuel/core/components/app_bar.dart';
 import 'package:fitfuel/core/components/custom_nav_bar.dart';
 
 class DietPlanScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: DarkTheme.kAppBgColor,
-        appBar: const AppBarCustom(),
+        appBar: const AppBarWithoutBackBtn(title: 'My Diet Plan'),
         body: SingleChildScrollView(
           child: Column(
             children: [
