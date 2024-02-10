@@ -20,13 +20,31 @@ class ClubsCubit extends Cubit<ClubsState> {
         super(ClubsInitial());
 
   LatLng? currentLocationTemp;
+  LatLng currentLocation = const LatLng(6.888801846911015, 79.85811646338293);
   List<ClubEntity> clubsList = [];
   Set<Marker> markers = {};
   BitmapDescriptor gymMarkerIcon = BitmapDescriptor.defaultMarker;
+  bool isFilterOpen = false;
+  double bottomDetailOffsetx = 0;
+  double filterOffsetx = 1;
 
   void init() {
     loadClubs();
     createCustomMarker();
+  }
+
+  void toggleFilter(String command) {
+    if (command == 'open') {
+      filterOffsetx = 0;
+      bottomDetailOffsetx = -1;
+      isFilterOpen = true;
+      emit(ToggleFilter());
+    } else if (command == 'close') {
+      filterOffsetx = 1;
+      bottomDetailOffsetx = 0;
+      isFilterOpen = false;
+      emit(ClubsInitial());
+    }
   }
 
   void createCustomMarker() {
@@ -67,11 +85,12 @@ class ClubsCubit extends Cubit<ClubsState> {
     double lat = double.parse(latitude);
     double lng = double.parse(longitude);
     currentLocationTemp = LatLng(lat, lng);
-    emit(LocationDataGathering(curruntLocation: LatLng(lat, lng)));
+    currentLocation = LatLng(lat, lng);
+    emit(LocationDataGathering());
     controller.animateCamera(CameraUpdate.newLatLng(LatLng(lat, lng)));
   }
 
-  void checkIsLocationServiceEnabled(BuildContext context) async {
+  Future<void> checkIsLocationServiceEnabled(BuildContext context) async {
     bool serviceEnabled;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -90,7 +109,7 @@ class ClubsCubit extends Cubit<ClubsState> {
     }
   }
 
-  void determinePosition() async {
+  Future<void> determinePosition() async {
     LocationPermission permission;
 
     permission = await Geolocator.checkPermission();
@@ -106,10 +125,8 @@ class ClubsCubit extends Cubit<ClubsState> {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    Position currentLocation = await Geolocator.getCurrentPosition();
-
-    emit(LocationDataGathering(
-        curruntLocation:
-            LatLng(currentLocation.latitude, currentLocation.longitude)));
+    Position currentLoc = await Geolocator.getCurrentPosition();
+    currentLocation = LatLng(currentLoc.latitude, currentLoc.longitude);
+    emit(LocationDataGathering());
   }
 }
