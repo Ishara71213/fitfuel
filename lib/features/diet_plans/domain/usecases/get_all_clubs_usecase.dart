@@ -1,12 +1,12 @@
-import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
-import 'package:fitfuel/features/clubs/domain/repository/club_repository.dart';
+import 'package:fitfuel/features/diet_plans/domain/entities/diet_plan_entity.dart';
+import 'package:fitfuel/features/diet_plans/domain/repository/dietplan_repository.dart';
 
-class GetAllClubsUsecase {
-  final ClubRepository _repository;
-  GetAllClubsUsecase({required ClubRepository repository})
+class GetAllDietPlansUsecase {
+  final DietPlanRepository _repository;
+  GetAllDietPlansUsecase({required DietPlanRepository repository})
       : _repository = repository;
 
-  Future<List<ClubEntity>> call() async {
-    return await _repository.getAllClubs();
+  Future<List<DietPlanEntity>> call() async {
+    return await _repository.getAllDietPlans();
   }
 }

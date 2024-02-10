@@ -20,6 +20,11 @@ import 'package:fitfuel/features/clubs/data/repository_impl/club_repository_impl
 import 'package:fitfuel/features/clubs/domain/repository/club_repository.dart';
 import 'package:fitfuel/features/clubs/domain/usecases/get_all_clubs_usecase.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
+import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source.dart';
+import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source_impl.dart';
+import 'package:fitfuel/features/diet_plans/data/repository_impl/dietplan_repository_impl.dart';
+import 'package:fitfuel/features/diet_plans/domain/repository/dietplan_repository.dart';
+import 'package:fitfuel/features/diet_plans/domain/usecases/get_all_clubs_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt sl = GetIt.instance;
@@ -63,18 +68,25 @@ Future<void> init() async {
   // club Usecase
   sl.registerLazySingleton<GetAllClubsUsecase>(
       () => GetAllClubsUsecase(repository: sl.call()));
+  //Diet plan Usecases
+  sl.registerLazySingleton<GetAllDietPlansUsecase>(
+      () => GetAllDietPlansUsecase(repository: sl.call()));
 
   //repositories
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(remoteDataSource: sl.call()));
   sl.registerLazySingleton<ClubRepository>(
       () => ClubRepositoryImpl(remoteDataSource: sl.call()));
+  sl.registerLazySingleton<DietPlanRepository>(
+      () => DetPlanRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
       AuthFirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
   sl.registerLazySingleton<ClubsFirebaseRemoteDataSource>(() =>
       ClubsFirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
+  sl.registerLazySingleton<DietPlansFirebaseRemoteDataSource>(
+      () => DietPlanFirebaseRemoteDataSourceImpl(firestore: sl.call()));
 
   //internal
   // final DbContext dbContext = DbContext.instance;
