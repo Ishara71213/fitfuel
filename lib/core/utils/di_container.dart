@@ -29,6 +29,8 @@ import 'package:fitfuel/features/clubs/domain/usecases/save_club_usecase.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source.dart';
 import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source_impl.dart';
+import 'package:fitfuel/features/diet_plans/data/repository_impl/dietplan_repository_impl.dart';
+import 'package:fitfuel/features/diet_plans/domain/repository/dietplan_repository.dart';
 import 'package:fitfuel/features/diet_plans/domain/usecases/get_all_clubs_usecase.dart';
 import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
 import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_plan_screen.dart';
@@ -122,6 +124,8 @@ Future<void> init() async {
       remoteDataSource: sl.call(), localDataSource: sl.call()));
   sl.registerLazySingleton<ScheduleRepository>(
       () => ScheduleRepositoryImpl(remoteDataSource: sl.call()));
+  sl.registerLazySingleton<DietPlanRepository>(
+      () => DetPlanRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
