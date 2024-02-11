@@ -8,3 +8,7 @@ sealed class SavedClubState extends Equatable {
 }
 
 final class SavedClubInitial extends SavedClubState {}
+
+final class SavedClubLoading extends SavedClubState {}
+
+final class SavedClubLodaingSuccess extends SavedClubState {}

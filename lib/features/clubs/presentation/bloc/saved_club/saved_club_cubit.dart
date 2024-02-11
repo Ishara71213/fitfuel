@@ -27,6 +27,7 @@ class SavedClubCubit extends Cubit<SavedClubState> {
         _removeClubByNameUsecase = removeClubByNameUsecase,
         _getClubByNameUsecase = getClubByNameUsecase,
         super(SavedClubInitial());
+  List<ClubEntity> savedClubLst = [];
 
   Future<bool> saveClub(ClubEntity entity, BuildContext context) async {
     try {
@@ -57,6 +58,7 @@ class SavedClubCubit extends Cubit<SavedClubState> {
   Future<bool> unsaveClub(String name) async {
     try {
       bool result = await _removeClubByNameUsecase.call(name);
+      lodaSavedClubList();
       return result;
     } on DatabaseException catch (e, stacktrace) {
       dev.log(e.toString(), name: "ERROR", stackTrace: stacktrace);
@@ -66,16 +68,16 @@ class SavedClubCubit extends Cubit<SavedClubState> {
     return false;
   }
 
-  Future<List<ClubEntity>> lodaSavedClubList() async {
-    List<ClubEntity> savedClubLst = [];
+  Future<void> lodaSavedClubList() async {
     try {
+      emit(SavedClubLoading());
       savedClubLst = await _getSavedClubsUsecase.call();
+      emit(SavedClubLodaingSuccess());
     } on DatabaseException catch (e, stacktrace) {
       dev.log(e.toString(), name: "ERROR", stackTrace: stacktrace);
     } catch (e, stacktrace) {
       dev.log(e.toString(), name: "ERROR", stackTrace: stacktrace);
     }
-    return savedClubLst;
   }
 
   Future<ClubEntity?> getClubByClubName(String name) async {
