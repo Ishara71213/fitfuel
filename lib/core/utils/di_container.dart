@@ -28,6 +28,12 @@ import 'package:fitfuel/features/clubs/domain/usecases/remove_club_by_name_useca
 import 'package:fitfuel/features/clubs/domain/usecases/save_club_usecase.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/saved_club/saved_club_cubit.dart';
+import 'package:fitfuel/features/schedule/data/data_sources/remote/schedule_firebase_remote_datasource.dart';
+import 'package:fitfuel/features/schedule/data/data_sources/remote/schedule_firebase_remote_datasource_impl.dart';
+import 'package:fitfuel/features/schedule/data/repository_impl/schedule_repository_impl.dart';
+import 'package:fitfuel/features/schedule/domain/repository/schedule_repository.dart';
+import 'package:fitfuel/features/schedule/domain/usecases/get_schedule_usecase.dart';
+import 'package:fitfuel/features/schedule/presentation/bloc/schedule/schedule_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -60,6 +66,8 @@ Future<void> init() async {
 
   sl.registerFactory<ProfileCubit>(() => ProfileCubit());
 
+  sl.registerFactory<ScheduleCubit>(
+      () => ScheduleCubit(getScheduleUsecase: sl.call()));
   //usecase
   //Auth Usecase
   sl.registerLazySingleton<SignInUsecase>(
@@ -91,11 +99,17 @@ Future<void> init() async {
   sl.registerLazySingleton<SaveClubsUsecase>(
       () => SaveClubsUsecase(repository: sl.call()));
 
+  //Schedule usecase
+  sl.registerLazySingleton<GetScheduleUsecase>(
+      () => GetScheduleUsecase(repository: sl.call()));
+      
   //repositories
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(remoteDataSource: sl.call()));
   sl.registerLazySingleton<ClubRepository>(() => ClubRepositoryImpl(
       remoteDataSource: sl.call(), localDataSource: sl.call()));
+   sl.registerLazySingleton<ScheduleRepository>(
+      () => ScheduleRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
@@ -104,7 +118,9 @@ Future<void> init() async {
       ClubsFirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
   sl.registerLazySingleton<ClubsLocalDataSource>(
       () => ClubsLocalDataSourceImpl(db: sl.call()));
-
+   sl.registerLazySingleton<ScheduleFirebaseRemoteDataSource>(
+      () => ScheduleFirebaseRemoteDataSourceImpl(firestore: sl.call()));
+      
   //internal
   final DbContext dbContext = DbContext.instance;
   final Database db = await dbContext.database;
