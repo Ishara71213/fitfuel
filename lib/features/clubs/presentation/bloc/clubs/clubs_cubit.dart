@@ -15,18 +15,79 @@ part 'clubs_state.dart';
 class ClubsCubit extends Cubit<ClubsState> {
   final GetAllClubsUsecase _getAllClubsUsecase;
 
-  ClubsCubit({required GetAllClubsUsecase getAllClubsUsecase})
-      : _getAllClubsUsecase = getAllClubsUsecase,
+  ClubsCubit({
+    required GetAllClubsUsecase getAllClubsUsecase,
+  })  : _getAllClubsUsecase = getAllClubsUsecase,
         super(ClubsInitial());
 
   LatLng? currentLocationTemp;
+  LatLng currentLocation = const LatLng(6.888801846911015, 79.85811646338293);
   List<ClubEntity> clubsList = [];
+  List<ClubEntity> clubsListTemp = [];
+
   Set<Marker> markers = {};
   BitmapDescriptor gymMarkerIcon = BitmapDescriptor.defaultMarker;
+
+  //Filter Variables
+  bool isFilterOpen = false;
+  double bottomDetailOffsetx = 0;
+  double filterOffsetx = 1;
+
+  double crowdSlider = 0;
 
   void init() {
     loadClubs();
     createCustomMarker();
+  }
+
+  void toggleFilter(String command) {
+    if (command == 'open') {
+      filterOffsetx = 0;
+      bottomDetailOffsetx = -1;
+      isFilterOpen = true;
+      emit(ToggleFilter());
+    } else if (command == 'close') {
+      filterOffsetx = 1;
+      bottomDetailOffsetx = 0;
+      isFilterOpen = false;
+      emit(ClubsInitial());
+    }
+  }
+
+  void setFilter(double distance, double gymMaxCrowd) {
+    emit(ClubsInitial());
+    clubsList = clubsListTemp;
+    clubsList = clubsList
+        .where(
+            (e) => (e.currentMembers / e.maxMembersAtTime) * 100 <= gymMaxCrowd)
+        .toList();
+    if (distance != 100) {
+      clubsList = clubsList
+          .where((e) => (getDistanceInKm(currentLocation,
+                  e.clubCoordinates.latitude, e.clubCoordinates.longitude) <=
+              distance.round()))
+          .toList();
+    }
+    addMarkers(clubsList);
+    toggleFilter('close');
+    emit(FilterClubs());
+  }
+
+  void clearFilter() {
+    clubsList = clubsListTemp;
+    addMarkers(clubsList);
+    toggleFilter('close');
+    emit(ClubsInitial());
+  }
+
+  double getDistanceInKm(LatLng currentLocation, endLatitude, endLongitude) {
+    double distance = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      endLatitude,
+      endLongitude,
+    );
+    return distance != 0 ? distance / 1000 : 0;
   }
 
   void createCustomMarker() {
@@ -36,23 +97,28 @@ class ClubsCubit extends Cubit<ClubsState> {
         .then((icon) => gymMarkerIcon = icon);
   }
 
+  void addMarkers(List<ClubEntity> clubsList) {
+    markers = {};
+    for (ClubEntity club in clubsList) {
+      markers.add(
+        Marker(
+          markerId: MarkerId(club.clubName.toString()),
+          position: LatLng(
+              club.clubCoordinates.latitude, club.clubCoordinates.longitude),
+          infoWindow: InfoWindow(title: club.clubName, snippet: club.clubName),
+          icon: gymMarkerIcon,
+        ),
+      );
+    }
+  }
+
   Future<void> loadClubs() async {
     try {
       if (clubsList.isNotEmpty) return;
       emit(ClubLoading());
       clubsList = await _getAllClubsUsecase.call();
-      for (ClubEntity club in clubsList) {
-        markers.add(
-          Marker(
-            markerId: MarkerId(club.clubName.toString()),
-            position: LatLng(
-                club.clubCoordinates.latitude, club.clubCoordinates.longitude),
-            infoWindow:
-                InfoWindow(title: club.clubName, snippet: club.clubName),
-            icon: gymMarkerIcon,
-          ),
-        );
-      }
+      clubsListTemp = clubsList;
+      addMarkers(clubsList);
       emit(ClubLoadingSuccess());
     } on SocketException catch (_) {
       emit(ClubLoadingFailed());
@@ -67,11 +133,12 @@ class ClubsCubit extends Cubit<ClubsState> {
     double lat = double.parse(latitude);
     double lng = double.parse(longitude);
     currentLocationTemp = LatLng(lat, lng);
-    emit(LocationDataGathering(curruntLocation: LatLng(lat, lng)));
+    currentLocation = LatLng(lat, lng);
+    emit(LocationDataGathering());
     controller.animateCamera(CameraUpdate.newLatLng(LatLng(lat, lng)));
   }
 
-  void checkIsLocationServiceEnabled(BuildContext context) async {
+  Future<void> checkIsLocationServiceEnabled(BuildContext context) async {
     bool serviceEnabled;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -90,7 +157,7 @@ class ClubsCubit extends Cubit<ClubsState> {
     }
   }
 
-  void determinePosition() async {
+  Future<void> determinePosition() async {
     LocationPermission permission;
 
     permission = await Geolocator.checkPermission();
@@ -106,10 +173,8 @@ class ClubsCubit extends Cubit<ClubsState> {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    Position currentLocation = await Geolocator.getCurrentPosition();
-
-    emit(LocationDataGathering(
-        curruntLocation:
-            LatLng(currentLocation.latitude, currentLocation.longitude)));
+    Position currentLoc = await Geolocator.getCurrentPosition();
+    currentLocation = LatLng(currentLoc.latitude, currentLoc.longitude);
+    emit(LocationDataGathering());
   }
 }
