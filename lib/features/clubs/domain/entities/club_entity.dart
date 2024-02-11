@@ -7,19 +7,24 @@ class ClubEntity extends Equatable {
   final String closeTime;
   final Cordinates clubCoordinates;
   final String clubName;
+  final int maxMembersAtTime;
+  final int currentMembers;
   final List<String> images;
   final String openTime;
-  final SubscriptionPlans subscriptionPlans;
+  final List<SubscriptionPlans> subscriptionPlans;
+  final bool isSaved;
 
-  const ClubEntity({
-    required this.address,
-    required this.closeTime,
-    required this.clubCoordinates,
-    required this.clubName,
-    required this.images,
-    required this.openTime,
-    required this.subscriptionPlans,
-  });
+  const ClubEntity(
+      {required this.address,
+      required this.closeTime,
+      required this.clubCoordinates,
+      required this.clubName,
+      required this.maxMembersAtTime,
+      required this.currentMembers,
+      required this.images,
+      required this.openTime,
+      required this.subscriptionPlans,
+      required this.isSaved});
 
   @override
   List<Object?> get props => [
@@ -27,8 +32,11 @@ class ClubEntity extends Equatable {
         closeTime,
         clubCoordinates,
         clubName,
+        maxMembersAtTime,
+        currentMembers,
         images,
         openTime,
         subscriptionPlans,
+        isSaved
       ];
 }

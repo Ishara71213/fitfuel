@@ -17,29 +17,33 @@ class GoogleMapComponent extends StatefulWidget {
 class _GoogleMapComponentState extends State<GoogleMapComponent> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+  late ClubsCubit clubsCubit;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void init(BuildContext context) async {
+    clubsCubit = BlocProvider.of<ClubsCubit>(context);
+    // await clubsCubit.checkIsLocationServiceEnabled(context);
+    // await clubsCubit.determinePosition();
+  }
+
   @override
   Widget build(BuildContext context) {
     ClubsCubit clubsCubit = BlocProvider.of<ClubsCubit>(context);
-    LatLng currentLocation = const LatLng(6.888801846911015, 79.85811646338293);
     return SizedBox(
       height: widget.height,
       child: BlocBuilder<ClubsCubit, ClubsState>(
         builder: (context, state) {
-          if (state is ClubsInitial) {
-            clubsCubit.checkIsLocationServiceEnabled(context);
-            clubsCubit.determinePosition();
-          } else if (state is LocationDataGathering) {
-            currentLocation = state.curruntLocation;
+          if (state is LocationDataGathering) {
             _controller.future.then((GoogleMapController controller) {
-              // The GoogleMapController is ready, you can call methods on it here.
+              // The GoogleMapController is ready,
               clubsCubit.updateMapCameraView(
-                  state.curruntLocation.latitude.toString(),
-                  state.curruntLocation.longitude.toString(),
+                  clubsCubit.currentLocation.latitude.toString(),
+                  clubsCubit.currentLocation.longitude.toString(),
                   controller);
             });
-          } else {
-            currentLocation =
-                const LatLng(6.888801846911015, 79.85811646338293);
           }
           return GoogleMap(
             onTap: (argument) => FocusScope.of(context).unfocus(),
@@ -48,13 +52,13 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
             zoomControlsEnabled: false,
             mapType: MapType.normal,
             initialCameraPosition: CameraPosition(
-              target: currentLocation,
-              zoom: 13.4746,
+              target: clubsCubit.currentLocation,
+              zoom: 16.4746,
             ),
             markers: {
               Marker(
                 markerId: const MarkerId('currentLocation'),
-                position: currentLocation,
+                position: clubsCubit.currentLocation,
                 infoWindow: const InfoWindow(title: 'Current Location'),
               ),
               ...clubsCubit.markers

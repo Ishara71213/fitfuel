@@ -9,15 +9,14 @@ sealed class ClubsState extends Equatable {
 
 final class ClubsInitial extends ClubsState {}
 
+final class FilterClubs extends ClubsState {}
+
 final class ClubLoading extends ClubsState {}
 
 final class ClubLoadingFailed extends ClubsState {}
 
 final class ClubLoadingSuccess extends ClubsState {}
 
-class LocationDataGathering extends ClubsState {
-  final LatLng curruntLocation;
-  const LocationDataGathering({this.curruntLocation = const LatLng(0, 0)});
-  @override
-  List<Object> get props => [curruntLocation];
-}
+class LocationDataGathering extends ClubsState {}
+
+final class ToggleFilter extends ClubsState {}

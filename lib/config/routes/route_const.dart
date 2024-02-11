@@ -10,7 +10,11 @@ class RouteConst {
   static const String profilesScreen = '/profilesScreen';
   static const String findClubScreen = '/findClubScreen';
   static const String clubDetailScreen = '/clubDetailScreen';
+  static const String savedClubsScreen = '/savedClubsScreen';
   static const String scheduleScreen = '/scheduleScreen';
+  static const String scheduleDetailsScreen = '/scheduleDetailsScreen';
+  static const String savedSchedulesScreen = '/savedSchedulesScreen';
   static const String dietPlanScreen = '/dietPlanScreen';
   static const String filterDietPlanScreen = '/filterDietPlanScreen';
+  static const String savedDietPlansScreen = '/savedDietPlansScreen';
 }

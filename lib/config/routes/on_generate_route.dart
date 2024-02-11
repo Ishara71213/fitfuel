@@ -7,15 +7,19 @@ import 'package:fitfuel/features/app/presentation/screens/setting_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:fitfuel/features/clubs/presentation/screens/club_details_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/screens/find_club_screen.dart';
 import 'package:fitfuel/features/diet_plans/presentation/screens/diet_plan_screen.dart';
 import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_plan_screen.dart';
+import 'package:fitfuel/features/schedule/presentation/screens/schedule_detail_screen.dart';
+import 'package:fitfuel/features/schedule/presentation/screens/schedule_select_screen.dart';
+import 'package:fitfuel/features/clubs/presentation/screens/saved_clubs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnGenerateRoute {
   static Route<dynamic> route(RouteSettings settings) {
-    //final args = settings.arguments;
+    final args = settings.arguments;
     String routeName = settings.name.toString();
     switch (settings.name) {
       case RouteConst.initialRoute:
@@ -39,7 +43,10 @@ class OnGenerateRoute {
             widget: const FindClubScreen(), route: routeName);
       case RouteConst.clubDetailScreen:
         return materialBuilder(
-            widget: const FindClubScreen(), route: routeName);
+            widget: ClubDetailsScreen(club: args), route: routeName);
+      case RouteConst.savedClubsScreen:
+        return materialBuilder(
+            widget: const SavedClubsScreen(), route: routeName);
       case RouteConst.settingsScreen:
         return materialBuilder(widget: const SettingScreen(), route: routeName);
       case RouteConst.dietPlanScreen:
@@ -48,7 +55,12 @@ class OnGenerateRoute {
       case RouteConst.filterDietPlanScreen:
         return materialBuilder(
             widget: const FilterDietPlanScreen(), route: routeName);
-
+      case RouteConst.scheduleScreen:
+        return materialBuilder(
+            widget: const ScheduleSelectScreen(), route: routeName);
+      case RouteConst.scheduleDetailsScreen:
+        return materialBuilder(
+            widget: ScheduleDetailScreen(data: args), route: routeName);
       //error page
       default:
         return MaterialPageRoute(builder: (context) => const ErrorScreen());
