@@ -9,6 +9,8 @@ import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/screens/club_details_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/screens/find_club_screen.dart';
+import 'package:fitfuel/features/schedule/presentation/screens/schedule_detail_screen.dart';
+import 'package:fitfuel/features/schedule/presentation/screens/schedule_select_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +43,12 @@ class OnGenerateRoute {
             widget: ClubDetailsScreen(club: args), route: routeName);
       case RouteConst.settingsScreen:
         return materialBuilder(widget: const SettingScreen(), route: routeName);
-
+       case RouteConst.scheduleScreen:
+        return materialBuilder(
+            widget: const ScheduleSelectScreen(), route: routeName);
+      case RouteConst.scheduleDetailsScreen:
+        return materialBuilder(
+            widget: ScheduleDetailScreen(data: args), route: routeName);
       //error page
       default:
         return MaterialPageRoute(builder: (context) => const ErrorScreen());

@@ -21,7 +21,8 @@ class DarkTheme {
   static Color kGreyMediumShade = const Color(0xFF5C5C5C);
   static Color kDarkGreyShade = const Color(0xFF363333);
   static Color kDarkerGreyShade = const Color(0xFF1B1B1B);
-
+  static Color kStyledBtn = const Color(0xFF202020);
+  
   static Color kGreyLightShade = const Color(0xFFBFBFBF);
   static Color kAppBgLighterShade = const Color(0xFFF6F6F6);
   static Color kAppBgLightestShade = const Color(0xFFEEEEEE);
