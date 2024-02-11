@@ -49,6 +49,7 @@ dependencies:
   cloud_firestore: ^4.8.4
   firebase_core: ^2.15.0
   firebase_storage: ^11.4.0
+  sqflite: ^2.3.0
   http: ^1.0.0
   google_fonts: ^5.1.0
   flutter_svg: ^2.0.6

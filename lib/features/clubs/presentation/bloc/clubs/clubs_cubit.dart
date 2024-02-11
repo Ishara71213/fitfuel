@@ -15,14 +15,16 @@ part 'clubs_state.dart';
 class ClubsCubit extends Cubit<ClubsState> {
   final GetAllClubsUsecase _getAllClubsUsecase;
 
-  ClubsCubit({required GetAllClubsUsecase getAllClubsUsecase})
-      : _getAllClubsUsecase = getAllClubsUsecase,
+  ClubsCubit({
+    required GetAllClubsUsecase getAllClubsUsecase,
+  })  : _getAllClubsUsecase = getAllClubsUsecase,
         super(ClubsInitial());
 
   LatLng? currentLocationTemp;
   LatLng currentLocation = const LatLng(6.888801846911015, 79.85811646338293);
   List<ClubEntity> clubsList = [];
   List<ClubEntity> clubsListTemp = [];
+
   Set<Marker> markers = {};
   BitmapDescriptor gymMarkerIcon = BitmapDescriptor.defaultMarker;
 

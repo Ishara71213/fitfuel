@@ -4,6 +4,7 @@ import 'package:fitfuel/core/components/club_image_slider.dart';
 import 'package:fitfuel/core/components/fit_fuel_subscription_banner.dart';
 import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
+import 'package:fitfuel/features/clubs/presentation/bloc/saved_club/saved_club_cubit.dart';
 import 'package:fitfuel/features/clubs/presentation/widgets/club_subscription_plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,13 +19,31 @@ class ClubDetailsScreen extends StatefulWidget {
 }
 
 class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
+  late ClubsCubit clubsCubit;
+  late SavedClubCubit savedClubCubit;
   late ClubEntity clubEntity;
   bool isSaved = false;
   @override
   void initState() {
     super.initState();
+    loadData();
+  }
+
+  void loadData() async {
     clubEntity = widget.club['club'] as ClubEntity;
     isSaved = clubEntity.isSaved;
+    clubsCubit = BlocProvider.of<ClubsCubit>(context);
+    savedClubCubit = BlocProvider.of<SavedClubCubit>(context);
+    ClubEntity? club =
+        await savedClubCubit.getClubByClubName(clubEntity.clubName);
+
+    setState(() {
+      if (club != null) {
+        isSaved = true;
+      } else {
+        isSaved = false;
+      }
+    });
   }
 
   @override
@@ -73,7 +92,9 @@ class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
                       BlocBuilder<ClubsCubit, ClubsState>(
                         builder: (context, state) {
                           return GestureDetector(
-                              onTap: () async {},
+                              onTap: () async {
+                                saveUnsave();
+                              },
                               child: !isSaved
                                   ? SvgPicture.asset(
                                       'assets/icons/save_icon.svg',
@@ -120,5 +141,28 @@ class _ClubDetailsScreenState extends State<ClubDetailsScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> saveUnsave() async {
+    if (!isSaved) {
+      bool result = await savedClubCubit.saveClub(clubEntity, context);
+      if (result) {
+        if (mounted) {
+          setState(() {
+            isSaved = true;
+          });
+        }
+      }
+    } else {
+      bool isDeleted = await savedClubCubit.unsaveClub(clubEntity.clubName);
+      if (isDeleted) {
+        if (mounted) {
+          isSaved = false;
+          setState(() {
+            isSaved = false;
+          });
+        }
+      }
+    }
   }
 }
