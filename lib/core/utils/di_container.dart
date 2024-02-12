@@ -102,25 +102,25 @@ Future<void> init() async {
   //Schedule usecase
   sl.registerLazySingleton<GetScheduleUsecase>(
       () => GetScheduleUsecase(repository: sl.call()));
-      
+
   //repositories
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(remoteDataSource: sl.call()));
   sl.registerLazySingleton<ClubRepository>(() => ClubRepositoryImpl(
       remoteDataSource: sl.call(), localDataSource: sl.call()));
-   sl.registerLazySingleton<ScheduleRepository>(
+  sl.registerLazySingleton<ScheduleRepository>(
       () => ScheduleRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
       AuthFirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
-  sl.registerLazySingleton<ClubsFirebaseRemoteDataSource>(() =>
-      ClubsFirebaseRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
+  sl.registerLazySingleton<ClubsFirebaseRemoteDataSource>(
+      () => ClubsFirebaseRemoteDataSourceImpl(firestore: sl.call()));
   sl.registerLazySingleton<ClubsLocalDataSource>(
       () => ClubsLocalDataSourceImpl(db: sl.call()));
-   sl.registerLazySingleton<ScheduleFirebaseRemoteDataSource>(
+  sl.registerLazySingleton<ScheduleFirebaseRemoteDataSource>(
       () => ScheduleFirebaseRemoteDataSourceImpl(firestore: sl.call()));
-      
+
   //internal
   final DbContext dbContext = DbContext.instance;
   final Database db = await dbContext.database;
