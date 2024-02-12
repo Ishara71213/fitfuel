@@ -8,13 +8,14 @@ class ExerciseCard extends StatelessWidget {
   const ExerciseCard({
     super.key,
     required this.dayWorkOut,
-    required this.day,
+    required this.day, required Color backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: DarkTheme.kStyledBtn),
+     decoration: BoxDecoration(color: const Color.fromARGB(255, 33, 60, 82)),
+
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
