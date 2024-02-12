@@ -15,12 +15,19 @@ class DietPlanCubit extends Cubit<DietPlanState> {
   List<DietPlanEntity> dietPlanList = [];
   List<DietPlanEntity> dietPlanListTemp = [];
 
-  void filter(String ageRange) {
-    // dietPlanList = dietPlanList.map((e) => (e.ageRange == ageRange)).toList();
+  void filter(String? ageRange, String? weightRange, String? dietType) {
+    emit(DietPlanSetFilter());
+    dietPlanList = dietPlanListTemp
+        .where((e) => ((e.ageRange == (ageRange ?? "")) ||
+            (e.weightRange == (weightRange ?? "")) ||
+            (e.dietType == (dietType ?? ""))))
+        .toList();
+    emit(DietPlanFilterSearch());
   }
 
   void clearFilter() {
     dietPlanList = dietPlanListTemp;
+    emit(DietPlanInitial());
   }
 
   Future<List<DietPlanEntity>> getAllDietPlans() async {

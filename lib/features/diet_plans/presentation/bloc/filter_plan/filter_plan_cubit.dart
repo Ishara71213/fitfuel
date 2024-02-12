@@ -4,8 +4,8 @@ import 'package:fitfuel/core/enums/diet_plan.dart';
 
 part 'filter_plan_state.dart';
 
-class DietPlanCubit extends Cubit<DietPlanState> {
-  DietPlanCubit() : super(DietPlanInitial());
+class DietPlanFilterCubit extends Cubit<DietPlanFilterState> {
+  DietPlanFilterCubit() : super(DietPlanInitial());
 
   void updateAgeRange(AgeRange selectedAgeRange) {
     emit(AgeRangeUpdated(selectedAgeRange));

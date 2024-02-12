@@ -1,74 +1,72 @@
-List<Map<String, dynamic>> dietPlanMock = [
-  {
-    "ageRange": "moreThan45",
-    "weightRange": "moreThan60kg",
-    "dietType": "heartHealthy",
-    "description":
-        "Prioritizing foods that support heart health and lower the risk of cardiovascular diseases",
-    "meals": {
-      "breakfast": [
-        {
-          "mealType": "Vegan",
-          "foodName": "Oatmeal with Berries",
-          "quantity": "1 cup",
-          "calories": 300
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Greek Yogurt Parfait with Mixed Berries",
-          "quantity": "1 serving",
-          "calories": 350
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Scrambled Eggs with Spinach and Whole Wheat Toast",
-          "quantity": "2 eggs, 1 slice of toast",
-          "calories": 400
-        }
-      ],
-      "lunch": [
-        {
-          "mealType": "Vegan",
-          "foodName": "Quinoa Salad with Chickpeas and Avocado",
-          "quantity": "1 plate",
-          "calories": 450
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Caprese Salad with Quinoa",
-          "quantity": "1 plate",
-          "calories": 400
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Grilled Chicken Salad with Olive Oil Dressing",
-          "quantity": "1 plate",
-          "calories": 500
-        }
-      ],
-      "dinner": [
-        {
-          "mealType": "Vegan",
-          "foodName": "Stuffed Bell Peppers with Lentils and Brown Rice",
-          "quantity": "2 peppers",
-          "calories": 500
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Mushroom and Spinach Risotto",
-          "quantity": "1 serving",
-          "calories": 450
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Baked Cod with Quinoa and Steamed Broccoli",
-          "quantity": "1 serving",
-          "calories": 550
-        }
-      ]
-    }
-  },
-];
+Map<String, dynamic> dietPlanMock = {
+  "ageRange": "moreThan45",
+  "weightRange": "moreThan60kg",
+  "dietType": "heartHealthy",
+  "description":
+      "Prioritizing foods that support heart health and lower the risk of cardiovascular diseases",
+  "meals": {
+    "breakfast": [
+      {
+        "mealType": "Vegan",
+        "foodName": "Oatmeal with Berries",
+        "quantity": "1 cup",
+        "calories": 300
+      },
+      {
+        "mealType": "Vegetarian",
+        "foodName": "Greek Yogurt Parfait with Mixed Berries",
+        "quantity": "1 serving",
+        "calories": 350
+      },
+      {
+        "mealType": "Omnivore",
+        "foodName": "Scrambled Eggs with Spinach and Whole Wheat Toast",
+        "quantity": "2 eggs, 1 slice of toast",
+        "calories": 400
+      }
+    ],
+    "lunch": [
+      {
+        "mealType": "Vegan",
+        "foodName": "Quinoa Salad with Chickpeas and Avocado",
+        "quantity": "1 plate",
+        "calories": 450
+      },
+      {
+        "mealType": "Vegetarian",
+        "foodName": "Caprese Salad with Quinoa",
+        "quantity": "1 plate",
+        "calories": 400
+      },
+      {
+        "mealType": "Omnivore",
+        "foodName": "Grilled Chicken Salad with Olive Oil Dressing",
+        "quantity": "1 plate",
+        "calories": 500
+      }
+    ],
+    "dinner": [
+      {
+        "mealType": "Vegan",
+        "foodName": "Stuffed Bell Peppers with Lentils and Brown Rice",
+        "quantity": "2 peppers",
+        "calories": 500
+      },
+      {
+        "mealType": "Vegetarian",
+        "foodName": "Mushroom and Spinach Risotto",
+        "quantity": "1 serving",
+        "calories": 450
+      },
+      {
+        "mealType": "Omnivore",
+        "foodName": "Baked Cod with Quinoa and Steamed Broccoli",
+        "quantity": "1 serving",
+        "calories": 550
+      }
+    ]
+  }
+};
 
 
 

@@ -8,3 +8,7 @@ sealed class DietPlanState extends Equatable {
 }
 
 final class DietPlanInitial extends DietPlanState {}
+
+final class DietPlanSetFilter extends DietPlanState {}
+
+final class DietPlanFilterSearch extends DietPlanState {}

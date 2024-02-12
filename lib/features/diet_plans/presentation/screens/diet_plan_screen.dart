@@ -72,7 +72,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: Card(
-                        color: DarkTheme.kAppBgMediumShade,
+                        color: DarkTheme.kDarkerGreyShade,
                         margin: const EdgeInsets.only(
                             bottom: 10, top: 20, right: 8, left: 8),
                         child: Padding(
@@ -87,7 +87,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
-                                  color: DarkTheme.kDarkGreyShade,
+                                  color: DarkTheme.kGreyColor,
                                 ),
                               ),
                               const SizedBox(height: 5),
@@ -97,7 +97,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
-                                  color: DarkTheme.kDarkGreyShade,
+                                  color: DarkTheme.kGreyColor,
                                 ),
                               ),
                               const SizedBox(height: 5),
@@ -107,7 +107,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                 style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
-                                  color: DarkTheme.kDarkGreyShade,
+                                  color: DarkTheme.kGreyColor,
                                 ),
                               ),
                             ],
@@ -119,7 +119,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: Card(
-                        color: DarkTheme.kAppBgMediumShade,
+                        color: DarkTheme.kStyledBtn,
                         margin: const EdgeInsets.all(8),
                         child: Padding(
                           padding: const EdgeInsets.all(16),
@@ -136,7 +136,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                       style: GoogleFonts.roboto(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w600,
-                                        color: DarkTheme.kPeoBlackColor,
+                                        color: DarkTheme.kGreyColor,
                                       ),
                                     ),
                                   ),
@@ -150,7 +150,8 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                     _showPopUp(context, 'Breakfast');
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFFFFB74D),
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 179, 108, 2),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
                                   ),
@@ -184,7 +185,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        const Color.fromARGB(255, 67, 231, 75),
+                                        const Color.fromARGB(255, 0, 77, 4),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
                                   ),
@@ -218,7 +219,7 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        const Color.fromARGB(255, 55, 79, 214),
+                                        const Color.fromARGB(255, 0, 18, 119),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
                                   ),
@@ -290,71 +291,76 @@ class _DietPlanScreenState extends State<DietPlanScreen> {
   }
 
   void _showPopUp(BuildContext context, String mealType) {
-    List<Map<String, dynamic>> meals = [];
+    DietPlanCubit dietPlanCubit = BlocProvider.of<DietPlanCubit>(context);
+
+    List<dynamic> meals = [];
 
     if (mealType == 'Breakfast') {
-      meals = [
-        {
-          "mealType": "Vegan",
-          "foodName": "Fruit Smoothie",
-          "quantity": "1 serving",
-          "calories": 250
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Whole Grain Toast with Avocado",
-          "quantity": "2 slices",
-          "calories": 300
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Scrambled Eggs with Spinach",
-          "quantity": "2 eggs",
-          "calories": 350
-        }
-      ];
+      meals =
+          dietPlanCubit.dietPlanList.first.meals['breakfast'] as List<dynamic>;
+      // meals = [
+      //   {
+      //     "mealType": "Vegan",
+      //     "foodName": "Fruit Smoothie",
+      //     "quantity": "1 serving",
+      //     "calories": 250
+      //   },
+      //   {
+      //     "mealType": "Vegetarian",
+      //     "foodName": "Whole Grain Toast with Avocado",
+      //     "quantity": "2 slices",
+      //     "calories": 300
+      //   },
+      //   {
+      //     "mealType": "Omnivore",
+      //     "foodName": "Scrambled Eggs with Spinach",
+      //     "quantity": "2 eggs",
+      //     "calories": 350
+      //   }
+      // ];
     } else if (mealType == 'Lunch') {
-      meals = [
-        {
-          "mealType": "Vegan",
-          "foodName": "Quinoa Salad with Mixed Veggies",
-          "quantity": "1 bowl",
-          "calories": 400
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Chickpea and Vegetable Wrap",
-          "quantity": "1 wrap",
-          "calories": 450
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Grilled Chicken Salad",
-          "quantity": "1 plate",
-          "calories": 500
-        }
-      ];
+      meals = dietPlanCubit.dietPlanList.first.meals['lunch'] as List<dynamic>;
+      // meals = [
+      //   {
+      //     "mealType": "Vegan",
+      //     "foodName": "Quinoa Salad with Mixed Veggies",
+      //     "quantity": "1 bowl",
+      //     "calories": 400
+      //   },
+      //   {
+      //     "mealType": "Vegetarian",
+      //     "foodName": "Chickpea and Vegetable Wrap",
+      //     "quantity": "1 wrap",
+      //     "calories": 450
+      //   },
+      //   {
+      //     "mealType": "Omnivore",
+      //     "foodName": "Grilled Chicken Salad",
+      //     "quantity": "1 plate",
+      //     "calories": 500
+      //   }
+      // ];
     } else if (mealType == 'Dinner') {
-      meals = [
-        {
-          "mealType": "Vegan",
-          "foodName": "Roasted Vegetable and Lentil Stew",
-          "quantity": "1 serving",
-          "calories": 450
-        },
-        {
-          "mealType": "Vegetarian",
-          "foodName": "Vegetable Stir-Fry with Tofu",
-          "quantity": "1 serving",
-          "calories": 500
-        },
-        {
-          "mealType": "Omnivore",
-          "foodName": "Salmon with Quinoa and Asparagus",
-          "quantity": "1 serving",
-          "calories": 550
-        }
-      ];
+      meals = dietPlanCubit.dietPlanList.first.meals['dinner'] as List<dynamic>;
+      //   {
+      //     "mealType": "Vegan",
+      //     "foodName": "Roasted Vegetable and Lentil Stew",
+      //     "quantity": "1 serving",
+      //     "calories": 450
+      //   },
+      //   {
+      //     "mealType": "Vegetarian",
+      //     "foodName": "Vegetable Stir-Fry with Tofu",
+      //     "quantity": "1 serving",
+      //     "calories": 500
+      //   },
+      //   {
+      //     "mealType": "Omnivore",
+      //     "foodName": "Salmon with Quinoa and Asparagus",
+      //     "quantity": "1 serving",
+      //     "calories": 550
+      //   }
+      // ];
     }
 
     showDialog(

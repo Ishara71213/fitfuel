@@ -1,4 +1,5 @@
 import 'package:fitfuel/core/enums/diet_plan.dart';
+import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,21 +19,28 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
   AgeRange? _selectedAgeRange;
   WeightRange? _selectedWeightRange;
   DietType? _selectedDietType;
-
+  String? _selectedFilterAgeRange;
+  String? _selectedFilterWeightRange;
+  String? _selectedFilterDietType;
   // final TextEditingController _weightController = TextEditingController();
   // final TextEditingController _dietTypeController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    DietPlanCubit dietPlanCubit = BlocProvider.of<DietPlanCubit>(context);
     return Scaffold(
       backgroundColor: DarkTheme.kAppBgColor,
       appBar: const AppBarWithBackBtn(title: 'Find Diet Plan'),
       body: BlocProvider(
-        create: (context) => DietPlanCubit(),
+        create: (context) => DietPlanFilterCubit(),
         child: Builder(
           builder: (context) {
-            final cubit = context.watch<DietPlanCubit>();
-            return BlocBuilder<DietPlanCubit, DietPlanState>(
+            final cubit = context.watch<DietPlanFilterCubit>();
+            return BlocBuilder<DietPlanFilterCubit, DietPlanFilterState>(
               builder: (context, state) {
                 if (state is AgeRangeUpdated) {
                   _selectedAgeRange = state.selectedAgeRange;
@@ -75,6 +83,7 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
                         ],
                         onChanged: (value) {
                           cubit.updateAgeRange(value!);
+                          _selectedFilterAgeRange = value.name;
                         },
                         hint: Text(
                           'Select Age Range',
@@ -113,6 +122,7 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
                         ],
                         onChanged: (value) {
                           cubit.updateWeightRange(value!);
+                          _selectedFilterWeightRange = value.name;
                         },
                         hint: Text(
                           'Select Weight Range',
@@ -151,6 +161,7 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
                         ],
                         onChanged: (value) {
                           cubit.updateDietType(value!);
+                          _selectedFilterDietType = value.name;
                         },
                         hint: Text(
                           'Select Diet Type',
@@ -167,7 +178,10 @@ class _FilterDietPlanScreenState extends State<FilterDietPlanScreen> {
                           backgroundColor: DarkTheme.kErrorColor,
                         ),
                         onPressed: () {
-                          // Handle button press
+                          dietPlanCubit.filter(
+                              _selectedFilterAgeRange,
+                              _selectedFilterWeightRange,
+                              _selectedFilterDietType);
                         },
                         child: const Text('Find Plan'),
                       ),
