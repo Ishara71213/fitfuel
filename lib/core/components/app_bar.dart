@@ -64,34 +64,40 @@ class _AppBarCustomState extends State<AppBarCustom> {
                       children: [
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: userCubit.userData != null &&
-                                      userCubit.userData!.imageUrl != null &&
-                                      userCubit.userData!.imageUrl != "null"
-                                  ? CircleAvatar(
-                                      minRadius: 25,
-                                      maxRadius: 25,
-                                      backgroundColor:
-                                          DarkTheme.kDarkerGreyShade,
-                                      //foregroundImage: Image.memory(bytes),
-                                      child: Icon(
-                                        Icons.person,
-                                        color: DarkTheme.kDarkGreyShade,
-                                        size: 35,
+                            GestureDetector(
+                              onTap: () {
+                                NavigationHandler.navigate(
+                                    context, RouteConst.profilesScreen);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10.0),
+                                child: userCubit.userData != null &&
+                                        userCubit.userData!.imageUrl != null &&
+                                        userCubit.userData!.imageUrl != "null"
+                                    ? CircleAvatar(
+                                        minRadius: 25,
+                                        maxRadius: 25,
+                                        backgroundColor:
+                                            DarkTheme.kDarkerGreyShade,
+                                        //foregroundImage: Image.memory(bytes),
+                                        child: Icon(
+                                          Icons.person,
+                                          color: DarkTheme.kDarkGreyShade,
+                                          size: 35,
+                                        ),
+                                      )
+                                    : CircleAvatar(
+                                        minRadius: 25,
+                                        maxRadius: 25,
+                                        backgroundColor:
+                                            DarkTheme.kDarkerGreyShade,
+                                        child: Icon(
+                                          Icons.person,
+                                          color: DarkTheme.kDarkGreyShade,
+                                          size: 35,
+                                        ),
                                       ),
-                                    )
-                                  : CircleAvatar(
-                                      minRadius: 25,
-                                      maxRadius: 25,
-                                      backgroundColor:
-                                          DarkTheme.kDarkerGreyShade,
-                                      child: Icon(
-                                        Icons.person,
-                                        color: DarkTheme.kDarkGreyShade,
-                                        size: 35,
-                                      ),
-                                    ),
+                              ),
                             ),
                             SizedBox(
                               height: 80,

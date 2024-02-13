@@ -10,6 +10,7 @@ class DropDownWidget extends StatelessWidget {
     required value,
     this.isDropdownLoading = false,
     this.isDecoration = false,
+    this.hint = "",
   });
   final double paddingVertical;
   final List<DropdownMenuItem<String>> items;
@@ -17,6 +18,7 @@ class DropDownWidget extends StatelessWidget {
   final String? selectedValue;
   final bool isDecoration;
   final bool isDropdownLoading;
+  final String hint;
 
   String? _formFieldValidator(String? val, BuildContext context) {
     if (val == '-1') {
@@ -30,16 +32,21 @@ class DropDownWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.9,
-      height: 68,
+      height: 60,
       child: Center(
         child: DropdownButtonFormField(
+          hint: Text(
+            hint,
+            style: kInputFieldHintText,
+          ),
+          style: kInputFieldText,
           menuMaxHeight: size.height / 2,
           isDense: true,
           validator: (value) => _formFieldValidator(value, context),
           decoration: isDecoration
               ? InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     borderSide:
                         BorderSide(color: DarkTheme.kDarkerGreyShade, width: 1),
                   ),

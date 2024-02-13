@@ -44,28 +44,12 @@ class AuthFirebaseRemoteDataSourceImpl extends AuthFirebaseRemoteDataSource {
     userCollectionRef = firestore.collection("Users");
 
     final uid = await getCurrentUId();
-    UserEntity currentUser = const UserEntity(
-      uid: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      dob: "",
-      imageUrl: "",
-      status: "",
-    );
+    UserEntity currentUser = const UserEntity();
 
     await userCollectionRef.doc(uid).get().then((value) {
       if (value.exists) {
         UserModel user = UserModel.fromSnapshot(value);
-        currentUser = UserEntity(
-          uid: user.uid,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          dob: user.dob,
-          status: user.status,
-          imageUrl: user.imageUrl,
-        );
+        currentUser = user.toEntity();
       }
       return;
     });
