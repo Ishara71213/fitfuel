@@ -1,6 +1,8 @@
+import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
 import 'package:fitfuel/core/components/app_bar.dart';
 import 'package:fitfuel/core/components/custom_nav_bar.dart';
+import 'package:fitfuel/core/utils/navigation_handler.dart';
 import 'package:fitfuel/features/app/presentation/widgets/member_subscription_progressbar.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +65,10 @@ class _SubscribedUserHomeScreenState extends State<SubscribedUserHomeScreen> {
                                   children: [
                                     Expanded(
                                       child: OutlinedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          NavigationHandler.navigate(context,
+                                              RouteConst.subscriptionScreen);
+                                        },
                                         style: OutlinedButton.styleFrom(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 19.0, vertical: 20),
