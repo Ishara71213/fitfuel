@@ -1,5 +1,6 @@
 import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
+import 'package:fitfuel/core/common/domain/entities/user_entity.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,15 @@ class _SplashDataLoadScreenState extends State<SplashDataLoadScreen> {
           BlocProvider.of<UserCubit>(context)
               .getCurrrentUserdata()
               .then((value) {
-            //String user = BlocProvider.of<UserCubit>(context).userData;
-            NavigationHandler.navigate(context, RouteConst.homeScreen);
+            UserEntity? user = BlocProvider.of<UserCubit>(context).userData;
+            if (user == null) {
+              NavigationHandler.navigate(context, RouteConst.homeScreen);
+            } else if (user.isSubscribed) {
+              NavigationHandler.navigate(
+                  context, RouteConst.homeScreenSubscribedUser);
+            } else {
+              NavigationHandler.navigate(context, RouteConst.homeScreen);
+            }
           });
         });
       });

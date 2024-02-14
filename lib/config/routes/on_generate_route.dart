@@ -3,6 +3,7 @@ import 'package:fitfuel/core/common/presentation/screens/error_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen_data_loader.dart';
 import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
+import 'package:fitfuel/features/app/presentation/screens/profile_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/setting_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/subscribed_user_home_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/subscription_screen.dart';
@@ -55,6 +56,8 @@ class OnGenerateRoute {
       case RouteConst.scheduleDetailsScreen:
         return materialBuilder(
             widget: ScheduleDetailScreen(data: args), route: routeName);
+      case RouteConst.profilesScreen:
+        return materialBuilder(widget: const ProfileScreen(), route: routeName);
       case RouteConst.subscriptionScreen:
         return materialBuilder(
             widget: const SubscriptionScreen(), route: routeName);
