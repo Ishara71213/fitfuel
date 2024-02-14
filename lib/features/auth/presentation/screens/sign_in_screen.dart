@@ -29,6 +29,12 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<UserCubit>(context).resetToInitialState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     //Size size = MediaQuery.of(context).size;
     return BlocListener<UserCubit, UserState>(
