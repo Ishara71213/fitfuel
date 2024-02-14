@@ -54,7 +54,7 @@ class CustomNavBar extends StatelessWidget {
   void navigationToScreens(BuildContext context, int currentPage) {
     switch (currentPage) {
       case 0:
-        NavigationHandler.navigate(context, RouteConst.homeScreen);
+        NavigationHandler.navigateToHomeByUserType(context);
       case 1:
         NavigationHandler.navigate(context, RouteConst.findClubScreen);
       case 2:
