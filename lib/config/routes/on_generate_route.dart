@@ -4,6 +4,8 @@ import 'package:fitfuel/core/common/presentation/screens/splash_screen.dart';
 import 'package:fitfuel/core/common/presentation/screens/splash_screen_data_loader.dart';
 import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/setting_screen.dart';
+import 'package:fitfuel/features/app/presentation/screens/subscribed_user_home_screen.dart';
+import 'package:fitfuel/features/app/presentation/screens/subscription_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
@@ -47,12 +49,18 @@ class OnGenerateRoute {
             widget: const SavedClubsScreen(), route: routeName);
       case RouteConst.settingsScreen:
         return materialBuilder(widget: const SettingScreen(), route: routeName);
-       case RouteConst.scheduleScreen:
+      case RouteConst.scheduleScreen:
         return materialBuilder(
             widget: const ScheduleSelectScreen(), route: routeName);
       case RouteConst.scheduleDetailsScreen:
         return materialBuilder(
             widget: ScheduleDetailScreen(data: args), route: routeName);
+      case RouteConst.subscriptionScreen:
+        return materialBuilder(
+            widget: const SubscriptionScreen(), route: routeName);
+      case RouteConst.homeScreenSubscribedUser:
+        return materialBuilder(
+            widget: const SubscribedUserHomeScreen(), route: routeName);
       //error page
       default:
         return MaterialPageRoute(builder: (context) => const ErrorScreen());
