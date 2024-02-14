@@ -60,7 +60,7 @@ class CustomNavBar extends StatelessWidget {
       case 2:
         NavigationHandler.navigate(context, RouteConst.scheduleScreen);
       case 3:
-        NavigationHandler.navigate(context, RouteConst.homeScreen);
+        NavigationHandler.navigate(context, RouteConst.dietPlanScreen);
     }
   }
 

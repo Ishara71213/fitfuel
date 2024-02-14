@@ -27,6 +27,13 @@ import 'package:fitfuel/features/clubs/domain/usecases/get_saved_clubs_usecase.d
 import 'package:fitfuel/features/clubs/domain/usecases/remove_club_by_name_usecase.dart';
 import 'package:fitfuel/features/clubs/domain/usecases/save_club_usecase.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
+import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source.dart';
+import 'package:fitfuel/features/diet_plans/data/data_sources/remote/dietplan_firebase_remote_data_source_impl.dart';
+import 'package:fitfuel/features/diet_plans/data/repository_impl/dietplan_repository_impl.dart';
+import 'package:fitfuel/features/diet_plans/domain/repository/dietplan_repository.dart';
+import 'package:fitfuel/features/diet_plans/domain/usecases/get_all_clubs_usecase.dart';
+import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
+import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_plan_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/saved_club/saved_club_cubit.dart';
 import 'package:fitfuel/features/schedule/data/data_sources/remote/schedule_firebase_remote_datasource.dart';
 import 'package:fitfuel/features/schedule/data/data_sources/remote/schedule_firebase_remote_datasource_impl.dart';
@@ -66,6 +73,10 @@ Future<void> init() async {
         getClubByNameUsecase: sl.call(),
       ));
 
+  sl.registerFactory<DietPlanCubit>(
+      () => DietPlanCubit(dietPlansUsecase: sl.call()));
+  sl.registerFactory<FilterDietPlanScreen>(() => const FilterDietPlanScreen());
+
   sl.registerFactory<ScheduleCubit>(
       () => ScheduleCubit(getScheduleUsecase: sl.call()));
   //usecase
@@ -91,6 +102,9 @@ Future<void> init() async {
   //remote data
   sl.registerLazySingleton<GetAllClubsUsecase>(
       () => GetAllClubsUsecase(repository: sl.call()));
+  //Diet plan Usecases
+  sl.registerLazySingleton<GetAllDietPlansUsecase>(
+      () => GetAllDietPlansUsecase(repository: sl.call()));
   //local data
   sl.registerLazySingleton<GetSavedClubsUsecase>(
       () => GetSavedClubsUsecase(repository: sl.call()));
@@ -112,6 +126,8 @@ Future<void> init() async {
       remoteDataSource: sl.call(), localDataSource: sl.call()));
   sl.registerLazySingleton<ScheduleRepository>(
       () => ScheduleRepositoryImpl(remoteDataSource: sl.call()));
+  sl.registerLazySingleton<DietPlanRepository>(
+      () => DetPlanRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
@@ -122,6 +138,8 @@ Future<void> init() async {
       () => ClubsLocalDataSourceImpl(db: sl.call()));
   sl.registerLazySingleton<ScheduleFirebaseRemoteDataSource>(
       () => ScheduleFirebaseRemoteDataSourceImpl(firestore: sl.call()));
+  sl.registerLazySingleton<DietPlansFirebaseRemoteDataSource>(
+      () => DietPlanFirebaseRemoteDataSourceImpl(firestore: sl.call()));
 
   //internal
   final DbContext dbContext = DbContext.instance;
