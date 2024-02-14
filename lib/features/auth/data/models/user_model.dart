@@ -66,8 +66,7 @@ class UserModel extends UserEntity {
       "addressLine2": addressLine2,
       "gender": gender,
       "isSubscribed": isSubscribed,
-      "currentSubscription":
-          currentSubscription ?? currentSubscription!.toJson(),
+      "currentSubscription": currentSubscription?.toJson(),
     };
   }
 
@@ -157,5 +156,37 @@ class UserModel extends UserEntity {
     return {
       "imageUrl": imageUrl,
     };
+  }
+
+  UserModel copyWith({
+    String? uid,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? dob,
+    String? status,
+    String? password,
+    String? imageUrl,
+    String? addressLine1,
+    String? addressLine2,
+    String? gender,
+    bool? isSubscribed,
+    Subscription? currentSubscription,
+  }) {
+    return UserModel(
+      uid: uid ?? this.uid,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      dob: dob ?? this.dob,
+      status: status ?? this.status,
+      password: password ?? this.password,
+      imageUrl: imageUrl ?? this.imageUrl,
+      addressLine1: addressLine1 ?? this.addressLine1,
+      addressLine2: addressLine2 ?? this.addressLine2,
+      gender: gender ?? this.gender,
+      isSubscribed: isSubscribed ?? this.isSubscribed,
+      currentSubscription: currentSubscription ?? this.currentSubscription,
+    );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitfuel/core/utils/db_context.dart';
-import 'package:fitfuel/features/app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:fitfuel/features/auth/data/data_sources/remote/auth_firebase_remote_data_source.dart';
 import 'package:fitfuel/features/auth/data/data_sources/remote/auth_firebase_remote_data_source_impl.dart';
 import 'package:fitfuel/features/auth/data/repository_impl/auth_repository_impl.dart';
@@ -13,6 +12,7 @@ import 'package:fitfuel/features/auth/domain/usecases/is_sign_in_usecase.dart';
 import 'package:fitfuel/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:fitfuel/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:fitfuel/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:fitfuel/features/auth/domain/usecases/update_user_data_usecase.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:fitfuel/features/clubs/data/data_sources/local/clubs_local_data_source.dart';
@@ -47,11 +47,13 @@ Future<void> init() async {
       signOutUsecase: sl.call()));
 
   sl.registerFactory<UserCubit>(() => UserCubit(
-      signInUsecase: sl.call(),
-      signUpUsecase: sl.call(),
-      createUserUsecase: sl.call(),
-      getCurrentUIdUsecase: sl.call(),
-      getCurrentUserByUidUsecase: sl.call()));
+        signInUsecase: sl.call(),
+        signUpUsecase: sl.call(),
+        createUserUsecase: sl.call(),
+        getCurrentUIdUsecase: sl.call(),
+        getCurrentUserByUidUsecase: sl.call(),
+        updateUserDataUsecase: sl.call(),
+      ));
 
   sl.registerFactory<ClubsCubit>(() => ClubsCubit(
         getAllClubsUsecase: sl.call(),
@@ -63,8 +65,6 @@ Future<void> init() async {
         removeClubByNameUsecase: sl.call(),
         getClubByNameUsecase: sl.call(),
       ));
-
-  sl.registerFactory<ProfileCubit>(() => ProfileCubit());
 
   sl.registerFactory<ScheduleCubit>(
       () => ScheduleCubit(getScheduleUsecase: sl.call()));
@@ -84,6 +84,8 @@ Future<void> init() async {
       () => CreateUserUsecase(repository: sl.call()));
   sl.registerLazySingleton<GetCurrentUserByUidUsecase>(
       () => GetCurrentUserByUidUsecase(repository: sl.call()));
+  sl.registerLazySingleton<UpdateUserDataUsecase>(
+      () => UpdateUserDataUsecase(repository: sl.call()));
 
   // club Usecase
   //remote data

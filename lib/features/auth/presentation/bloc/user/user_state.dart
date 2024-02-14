@@ -14,3 +14,9 @@ final class UserLoading extends UserState {}
 final class UserFailrue extends UserState {}
 
 final class UserSuccess extends UserState {}
+
+final class UserUpdating extends UserState {}
+
+final class UserUpdateFailed extends UserState {}
+
+final class UserUpdateSuccess extends UserState {}

@@ -1,7 +1,6 @@
 import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
-import 'package:fitfuel/features/app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +57,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
                 onTap: () {
                   // NavigationHandler.navigate(context, RouteConst.profileScreen);
                 },
-                child: BlocBuilder<ProfileCubit, ProfileState>(
+                child: BlocBuilder<UserCubit, UserState>(
                   builder: (context, state) {
                     return Row(
                       children: [

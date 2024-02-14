@@ -37,7 +37,7 @@ class DropDownWidget extends StatelessWidget {
         child: DropdownButtonFormField(
           hint: Text(
             hint,
-            style: kInputFieldHintText,
+            style: kInputFieldText,
           ),
           style: kInputFieldText,
           menuMaxHeight: size.height / 2,

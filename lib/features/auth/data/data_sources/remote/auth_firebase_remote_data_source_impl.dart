@@ -70,4 +70,32 @@ class AuthFirebaseRemoteDataSourceImpl extends AuthFirebaseRemoteDataSource {
   Future<void> signUp(UserEntity user) async =>
       await auth.createUserWithEmailAndPassword(
           email: user.email!, password: user.password!);
+
+  @override
+  Future<UserEntity> updateUserData(UserEntity entity) async {
+    try {
+      String? uid = auth.currentUser?.uid;
+      CollectionReference userCollectionRef = firestore.collection("Users");
+
+      late UserEntity currentUser;
+
+      await userCollectionRef.doc(uid).get().then((value) {
+        if (value.exists) {
+          UserModel existingUser = UserModel.fromSnapshot(value);
+          final userData = existingUser.copyWith(
+              firstName: entity.firstName,
+              lastName: entity.lastName,
+              gender: entity.gender,
+              addressLine1: entity.addressLine1,
+              addressLine2: entity.addressLine2);
+          currentUser = userData.toEntity();
+          final payload = userData.toDocument();
+          userCollectionRef.doc(uid).set(payload);
+        }
+      });
+      return currentUser;
+    } catch (ex) {
+      throw ();
+    }
+  }
 }
