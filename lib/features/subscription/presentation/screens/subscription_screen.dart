@@ -5,10 +5,14 @@ import 'package:fitfuel/core/components/fit_fuel_subscription_banner.dart';
 import 'package:fitfuel/core/enums/states.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
 import 'package:fitfuel/core/widgets_library/widgets_library.dart';
+import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart';
 import 'package:fitfuel/features/clubs/presentation/widgets/club_detail_card.dart';
+import 'package:fitfuel/features/subscription/presentation/bloc/subscription_cubit/subscription_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
+import 'dart:developer' as dev;
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -19,11 +23,16 @@ class SubscriptionScreen extends StatefulWidget {
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   late ClubsCubit clubsCubit;
+  late UserCubit userCubit;
+  late SubscriptionCubit subscriptionCubit;
 
   @override
   void initState() {
     super.initState();
     clubsCubit = BlocProvider.of<ClubsCubit>(context);
+    subscriptionCubit = BlocProvider.of<SubscriptionCubit>(context);
+    userCubit = BlocProvider.of<UserCubit>(context);
+    clubsCubit.loadClubs();
   }
 
   @override
@@ -106,10 +115,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           vertical: 20, horizontal: 20),
                       child: FilledButtonWithLoader(
                         initText: 'Subscribe',
-                        onPressed: () {
-                          NavigationHandler.navigate(
-                              context, RouteConst.subscriptionScreen);
-                        },
+                        onPressed: subscribe,
                         state: States.initial,
                       ),
                     ),
@@ -121,5 +127,48 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         ),
       ),
     );
+  }
+
+  void subscribe() async {
+    PayHere.startPayment(subscriptionCubit.getPaymentModel(userCubit.userData!),
+        (paymentId) async {
+      await subscriptionCubit.subscribe();
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: DarkTheme.kSuccessColor,
+          content: Text(
+            'Payment Success',
+            style: kScafoldMessengerText,
+          ),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) return;
+      NavigationHandler.navigate(context, RouteConst.splashDataLoadScreen);
+    }, (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: DarkTheme.kErrorColor,
+          content: Text(
+            'Payment Failed',
+            style: kScafoldMessengerText,
+          ),
+        ),
+      );
+      dev.log("One Time Payment Failed. Error: $error", name: "PayHere ERROR");
+    }, () {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: DarkTheme.kWarnningColor,
+          content: Text(
+            'Payment Terminated',
+            style: kScafoldMessengerText,
+          ),
+        ),
+      );
+      dev.log("One Time Payment Dismissed", name: "PayHere INFO");
+    });
   }
 }

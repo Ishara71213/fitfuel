@@ -81,6 +81,12 @@ TextStyle kSmalltextStyle = GoogleFonts.poppins(
   color: DarkTheme.kGreyColor,
 );
 
+TextStyle kScafoldMessengerText = GoogleFonts.poppins(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: DarkTheme.kWhiteColor,
+);
+
 TextStyle kPrimarySmalltextStyle = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.w600,

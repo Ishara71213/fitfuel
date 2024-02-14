@@ -7,6 +7,7 @@ import 'package:fitfuel/features/clubs/presentation/bloc/clubs/clubs_cubit.dart'
 import 'package:fitfuel/features/diet_plans/presentation/bloc/dietplan_cubit/diet_plan_cubit.dart';
 import 'package:fitfuel/features/clubs/presentation/bloc/saved_club/saved_club_cubit.dart';
 import 'package:fitfuel/features/schedule/presentation/bloc/schedule/schedule_cubit.dart';
+import 'package:fitfuel/features/subscription/presentation/bloc/subscription_cubit/subscription_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitfuel/core/utils/di_container.dart' as di;
@@ -32,6 +33,8 @@ class FitFuelApp extends StatelessWidget {
         BlocProvider<DietPlanCubit>(create: (_) => di.sl<DietPlanCubit>()),
         BlocProvider<SavedClubCubit>(create: (_) => di.sl<SavedClubCubit>()),
         BlocProvider<ScheduleCubit>(create: (_) => di.sl<ScheduleCubit>()),
+        BlocProvider<SubscriptionCubit>(
+            create: (_) => di.sl<SubscriptionCubit>()),
       ],
       child: MaterialApp(
         title: 'Fit Fule',
