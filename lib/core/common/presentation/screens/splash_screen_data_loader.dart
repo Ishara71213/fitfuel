@@ -21,6 +21,7 @@ class _SplashDataLoadScreenState extends State<SplashDataLoadScreen> {
           BlocProvider.of<UserCubit>(context)
               .getCurrrentUserdata()
               .then((value) {
+            //String user = BlocProvider.of<UserCubit>(context).userData;
             NavigationHandler.navigate(context, RouteConst.homeScreen);
           });
         });
