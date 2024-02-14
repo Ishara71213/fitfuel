@@ -61,6 +61,8 @@ dependencies:
   flutter_polyline_points: ^2.0.0
   #permision 
   permission_handler: ^11.0.0
+  #payment Gateway
+  payhere_mobilesdk_flutter: ^3.0.8
 
 dev_dependencies:
   flutter_test:
