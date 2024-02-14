@@ -6,3 +6,4 @@ import 'package:flutter/material.dart';
 
 part 'filled_button_with_loader.dart';
 part 'filled_button_custom.dart';
+part 'page_redirect_button_custom.dart';

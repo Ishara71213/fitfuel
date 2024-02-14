@@ -12,6 +12,7 @@ class DarkTheme {
   static Color kWhiteColor = const Color(0xFFFFFFFF);
   static Color kPeoBlackColor = const Color(0xFF000000);
   static Color kBlackColor = const Color(0xFF131213);
+  static Color kBlackDarkerColor = const Color(0xFF101010);
   static Color kBlackMediumShade = const Color(0xFF0F0F0F);
 
   static Color inputBoxTextColor = const Color(0xFFBFBFBF);
@@ -29,7 +30,7 @@ class DarkTheme {
 
   static Color kAppBarBorder = const Color(0xFFE3E3E3);
 
-  static Color kSuccessColor = const Color(0xFF189516);
+  static Color kSuccessColor = const Color(0xFF066304);
   static Color kWarnningColor = const Color(0XFFF5B14B);
   static Color kErrorColor = const Color(0XFFD1212C);
 
