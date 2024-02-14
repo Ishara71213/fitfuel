@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitfuel/core/constants/firebase_collections.dart';
 import 'package:fitfuel/features/clubs/data/data_sources/remote/clubs_firebase_remote_data_source.dart';
 import 'package:fitfuel/features/clubs/data/models/club_model.dart';
@@ -8,10 +7,8 @@ import 'dart:developer' as dev;
 
 class ClubsFirebaseRemoteDataSourceImpl
     implements ClubsFirebaseRemoteDataSource {
-  final FirebaseAuth auth;
   final FirebaseFirestore firestore;
-  ClubsFirebaseRemoteDataSourceImpl(
-      {required this.auth, required this.firestore});
+  ClubsFirebaseRemoteDataSourceImpl({required this.firestore});
 
   @override
   Future<List<ClubEntity>> getAllClubs() async {

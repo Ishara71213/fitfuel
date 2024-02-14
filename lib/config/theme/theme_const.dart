@@ -22,7 +22,7 @@ class DarkTheme {
   static Color kDarkGreyShade = const Color(0xFF363333);
   static Color kDarkerGreyShade = const Color(0xFF1B1B1B);
   static Color kStyledBtn = const Color(0xFF202020);
-  
+
   static Color kGreyLightShade = const Color(0xFFBFBFBF);
   static Color kAppBgLighterShade = const Color(0xFFF6F6F6);
   static Color kAppBgLightestShade = const Color(0xFFEEEEEE);
@@ -59,6 +59,12 @@ TextStyle kDarkGreySmalltextStyle = GoogleFonts.poppins(
 TextStyle kGreySmalltextStyle = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.w400,
+  color: DarkTheme.kGreyColor,
+);
+
+TextStyle kGreySmallBodytextStyle = GoogleFonts.poppins(
+  fontSize: 12,
+  fontWeight: FontWeight.w300,
   color: DarkTheme.kGreyColor,
 );
 

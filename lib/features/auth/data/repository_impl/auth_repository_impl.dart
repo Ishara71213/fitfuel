@@ -27,4 +27,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> signUp(UserEntity user) async => remoteDataSource.signUp(user);
+
+  @override
+  Future<UserEntity> updateUserData(UserEntity user) async =>
+      await remoteDataSource.updateUserData(user);
 }
