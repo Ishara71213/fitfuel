@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitfuel/core/common/domain/entities/user_entity.dart';
 import 'package:fitfuel/core/constants/firebase_collections.dart';
 import 'package:fitfuel/features/auth/data/models/user_model.dart';
-import 'package:fitfuel/features/clubs/data/models/club_model.dart';
-import 'package:fitfuel/features/clubs/domain/entities/club_entity.dart';
 import 'dart:developer' as dev;
 
 import 'package:fitfuel/features/subscription/data/remote/subscription_remote_data_source.dart';
