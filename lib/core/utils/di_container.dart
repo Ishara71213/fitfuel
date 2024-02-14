@@ -41,6 +41,12 @@ import 'package:fitfuel/features/schedule/data/repository_impl/schedule_reposito
 import 'package:fitfuel/features/schedule/domain/repository/schedule_repository.dart';
 import 'package:fitfuel/features/schedule/domain/usecases/get_schedule_usecase.dart';
 import 'package:fitfuel/features/schedule/presentation/bloc/schedule/schedule_cubit.dart';
+import 'package:fitfuel/features/subscription/data/remote/subscription_remote_data_source.dart';
+import 'package:fitfuel/features/subscription/data/remote/subscription_remote_data_source_impl.dart';
+import 'package:fitfuel/features/subscription/data/repository_impl/subscription_repository_impl.dart';
+import 'package:fitfuel/features/subscription/domain/repository/subscription_repository.dart';
+import 'package:fitfuel/features/subscription/domain/usecases/subscribe_usecase.dart';
+import 'package:fitfuel/features/subscription/presentation/bloc/subscription_cubit/subscription_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -79,6 +85,10 @@ Future<void> init() async {
 
   sl.registerFactory<ScheduleCubit>(
       () => ScheduleCubit(getScheduleUsecase: sl.call()));
+
+  sl.registerFactory<SubscriptionCubit>(
+      () => SubscriptionCubit(subscribeUsecase: sl.call()));
+
   //usecase
   //Auth Usecase
   sl.registerLazySingleton<SignInUsecase>(
@@ -118,6 +128,9 @@ Future<void> init() async {
   //Schedule usecase
   sl.registerLazySingleton<GetScheduleUsecase>(
       () => GetScheduleUsecase(repository: sl.call()));
+  //Subscription usecase
+  sl.registerLazySingleton<SubscribeUsecase>(
+      () => SubscribeUsecase(repository: sl.call()));
 
   //repositories
   sl.registerLazySingleton<AuthRepository>(
@@ -128,6 +141,8 @@ Future<void> init() async {
       () => ScheduleRepositoryImpl(remoteDataSource: sl.call()));
   sl.registerLazySingleton<DietPlanRepository>(
       () => DetPlanRepositoryImpl(remoteDataSource: sl.call()));
+  sl.registerLazySingleton<SubscriptionRepository>(
+      () => SubscriptionRepositoryImpl(remoteDataSource: sl.call()));
 
   //data source
   sl.registerLazySingleton<AuthFirebaseRemoteDataSource>(() =>
@@ -140,6 +155,8 @@ Future<void> init() async {
       () => ScheduleFirebaseRemoteDataSourceImpl(firestore: sl.call()));
   sl.registerLazySingleton<DietPlansFirebaseRemoteDataSource>(
       () => DietPlanFirebaseRemoteDataSourceImpl(firestore: sl.call()));
+  sl.registerLazySingleton<SubscriptionRemoteDataSource>(() =>
+      SubscriptionRemoteDataSourceImpl(auth: sl.call(), firestore: sl.call()));
 
   //internal
   final DbContext dbContext = DbContext.instance;
