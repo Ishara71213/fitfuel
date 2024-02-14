@@ -6,7 +6,6 @@ import 'package:fitfuel/features/app/presentation/screens/home_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/profile_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/setting_screen.dart';
 import 'package:fitfuel/features/app/presentation/screens/subscribed_user_home_screen.dart';
-import 'package:fitfuel/features/app/presentation/screens/subscription_screen.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:fitfuel/features/auth/presentation/screens/sign_up_screen.dart';
@@ -17,6 +16,7 @@ import 'package:fitfuel/features/diet_plans/presentation/screens/filter_diet_pla
 import 'package:fitfuel/features/schedule/presentation/screens/schedule_detail_screen.dart';
 import 'package:fitfuel/features/schedule/presentation/screens/schedule_select_screen.dart';
 import 'package:fitfuel/features/clubs/presentation/screens/saved_clubs_screen.dart';
+import 'package:fitfuel/features/subscription/presentation/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
