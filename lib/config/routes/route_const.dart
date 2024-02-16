@@ -16,4 +16,5 @@ class RouteConst {
   static const String savedSchedulesScreen = '/savedSchedulesScreen';
   static const String dietPlanScreen = '/dietPlanScreen';
   static const String savedDietPlansScreen = '/savedDietPlansScreen';
+  static const String qrScreen = '/qrScreen';
 }

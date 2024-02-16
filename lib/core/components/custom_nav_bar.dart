@@ -49,6 +49,16 @@ class CustomNavBar extends StatelessWidget {
       label: "Diet Plan",
       backgroundColor: DarkTheme.kBlackColor,
     ),
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(
+        'assets/icons/qr.png',
+        height: 24,
+        colorFilter:
+            ColorFilter.mode(DarkTheme.kGreyMediumShade, BlendMode.srcIn),
+      ),
+      label: "QR",
+      backgroundColor: DarkTheme.kBlackColor,
+    ),
   ];
 
   void navigationToScreens(BuildContext context, int currentPage) {
@@ -61,6 +71,8 @@ class CustomNavBar extends StatelessWidget {
         NavigationHandler.navigate(context, RouteConst.scheduleScreen);
       case 3:
         NavigationHandler.navigate(context, RouteConst.homeScreen);
+      // case 4:
+      //   NavigationHandler.navigate(context, RouteConst.qrScreen);
     }
   }
 
