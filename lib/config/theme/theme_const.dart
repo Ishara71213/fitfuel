@@ -12,6 +12,7 @@ class DarkTheme {
   static Color kWhiteColor = const Color(0xFFFFFFFF);
   static Color kPeoBlackColor = const Color(0xFF000000);
   static Color kBlackColor = const Color(0xFF131213);
+  static Color kBlackDarkerColor = const Color(0xFF101010);
   static Color kBlackMediumShade = const Color(0xFF0F0F0F);
 
   static Color inputBoxTextColor = const Color(0xFFBFBFBF);
@@ -22,14 +23,14 @@ class DarkTheme {
   static Color kDarkGreyShade = const Color(0xFF363333);
   static Color kDarkerGreyShade = const Color(0xFF1B1B1B);
   static Color kStyledBtn = const Color(0xFF202020);
-  
+
   static Color kGreyLightShade = const Color(0xFFBFBFBF);
   static Color kAppBgLighterShade = const Color(0xFFF6F6F6);
   static Color kAppBgLightestShade = const Color(0xFFEEEEEE);
 
   static Color kAppBarBorder = const Color(0xFFE3E3E3);
 
-  static Color kSuccessColor = const Color(0xFF189516);
+  static Color kSuccessColor = const Color(0xFF066304);
   static Color kWarnningColor = const Color(0XFFF5B14B);
   static Color kErrorColor = const Color(0XFFD1212C);
 
@@ -62,6 +63,12 @@ TextStyle kGreySmalltextStyle = GoogleFonts.poppins(
   color: DarkTheme.kGreyColor,
 );
 
+TextStyle kGreySmallBodytextStyle = GoogleFonts.poppins(
+  fontSize: 12,
+  fontWeight: FontWeight.w300,
+  color: DarkTheme.kGreyColor,
+);
+
 TextStyle kGreySmallesttextStyle = GoogleFonts.poppins(
   fontSize: 11,
   fontWeight: FontWeight.w400,
@@ -72,6 +79,12 @@ TextStyle kSmalltextStyle = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.w600,
   color: DarkTheme.kGreyColor,
+);
+
+TextStyle kScafoldMessengerText = GoogleFonts.poppins(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: DarkTheme.kWhiteColor,
 );
 
 TextStyle kPrimarySmalltextStyle = GoogleFonts.poppins(

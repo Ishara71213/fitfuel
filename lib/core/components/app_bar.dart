@@ -1,7 +1,6 @@
 import 'package:fitfuel/config/routes/route_const.dart';
 import 'package:fitfuel/config/theme/theme_const.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
-import 'package:fitfuel/features/app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:fitfuel/features/auth/presentation/bloc/user/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,40 +57,46 @@ class _AppBarCustomState extends State<AppBarCustom> {
                 onTap: () {
                   // NavigationHandler.navigate(context, RouteConst.profileScreen);
                 },
-                child: BlocBuilder<ProfileCubit, ProfileState>(
+                child: BlocBuilder<UserCubit, UserState>(
                   builder: (context, state) {
                     return Row(
                       children: [
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: userCubit.userData != null &&
-                                      userCubit.userData!.imageUrl != null &&
-                                      userCubit.userData!.imageUrl != "null"
-                                  ? CircleAvatar(
-                                      minRadius: 25,
-                                      maxRadius: 25,
-                                      backgroundColor:
-                                          DarkTheme.kDarkerGreyShade,
-                                      //foregroundImage: Image.memory(bytes),
-                                      child: Icon(
-                                        Icons.person,
-                                        color: DarkTheme.kDarkGreyShade,
-                                        size: 35,
+                            GestureDetector(
+                              onTap: () {
+                                NavigationHandler.navigate(
+                                    context, RouteConst.profilesScreen);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10.0),
+                                child: userCubit.userData != null &&
+                                        userCubit.userData!.imageUrl != null &&
+                                        userCubit.userData!.imageUrl != "null"
+                                    ? CircleAvatar(
+                                        minRadius: 25,
+                                        maxRadius: 25,
+                                        backgroundColor:
+                                            DarkTheme.kDarkerGreyShade,
+                                        //foregroundImage: Image.memory(bytes),
+                                        child: Icon(
+                                          Icons.person,
+                                          color: DarkTheme.kDarkGreyShade,
+                                          size: 35,
+                                        ),
+                                      )
+                                    : CircleAvatar(
+                                        minRadius: 25,
+                                        maxRadius: 25,
+                                        backgroundColor:
+                                            DarkTheme.kDarkerGreyShade,
+                                        child: Icon(
+                                          Icons.person,
+                                          color: DarkTheme.kDarkGreyShade,
+                                          size: 35,
+                                        ),
                                       ),
-                                    )
-                                  : CircleAvatar(
-                                      minRadius: 25,
-                                      maxRadius: 25,
-                                      backgroundColor:
-                                          DarkTheme.kDarkerGreyShade,
-                                      child: Icon(
-                                        Icons.person,
-                                        color: DarkTheme.kDarkGreyShade,
-                                        size: 35,
-                                      ),
-                                    ),
+                              ),
                             ),
                             SizedBox(
                               height: 80,

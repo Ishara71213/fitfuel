@@ -7,7 +7,9 @@ import 'package:fitfuel/core/constants/firebase_collections.dart';
 import 'package:fitfuel/core/enums/states.dart';
 import 'package:fitfuel/core/mock_json/schedule.dart';
 import 'package:fitfuel/core/utils/navigation_handler.dart';
+import 'package:fitfuel/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -18,6 +20,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  late AuthCubit authCubit;
   final auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
   States uploadState = States.initial;
@@ -40,6 +43,12 @@ class _SettingScreenState extends State<SettingScreen> {
       uploadState = States.success;
     });
     return;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    authCubit = BlocProvider.of<AuthCubit>(context);
   }
 
   @override
@@ -147,10 +156,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => {
-                      NavigationHandler.navigate(
-                          context, RouteConst.savedDietPlansScreen)
-                    },
+                    onTap: () => {authCubit.signOut()},
                     child: ListTile(
                       dense: true,
                       leading: SvgPicture.asset(
@@ -165,8 +171,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       trailing: IconButton(
                         icon: svgKeyboardArrowRight,
                         onPressed: () {
-                          NavigationHandler.navigate(
-                              context, RouteConst.savedDietPlansScreen);
+                          authCubit.signOut();
                         },
                       ),
                     ),

@@ -12,7 +12,7 @@ class FitFuelSubscriptionBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        NavigationHandler.navigate(context, RouteConst.homeScreen);
+        NavigationHandler.navigate(context, RouteConst.subscriptionScreen);
       },
       child: Container(
         color: DarkTheme.kPrimaryColor,
