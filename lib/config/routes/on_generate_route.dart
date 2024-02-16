@@ -19,7 +19,7 @@ import 'package:fitfuel/features/clubs/presentation/screens/saved_clubs_screen.d
 import 'package:fitfuel/features/subscription/presentation/screens/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fitfuel/features/qr/presentation/qr.dart';
+
 class OnGenerateRoute {
   static Route<dynamic> route(RouteSettings settings) {
     final args = settings.arguments;
