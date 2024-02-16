@@ -25,7 +25,7 @@ class _ScheduleDetailScreenState extends State<ScheduleDetailScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: DarkTheme.kAppBgColor,
+         backgroundColor: Color.fromARGB(255, 207, 168, 226),
         appBar: const AppBarWithBackBtn(title: "Schedule Details"),
         body: SingleChildScrollView(
           child: Padding(
@@ -39,7 +39,7 @@ class _ScheduleDetailScreenState extends State<ScheduleDetailScreen> {
                     Expanded(
                       child: Text(
                         scheduleLevels.description,
-                        style: kGreySmalltextStyle,
+                        style: kGreySmalltextStyle.copyWith(color: Colors.black),
                       ),
                     ),
                   ],
@@ -49,42 +49,49 @@ class _ScheduleDetailScreenState extends State<ScheduleDetailScreen> {
                   ExerciseCard(
                     day: 1,
                     dayWorkOut: scheduleLevels.day1!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day2 != null)
                   ExerciseCard(
                     day: 2,
                     dayWorkOut: scheduleLevels.day2!,
+                    backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day3 != null)
                   ExerciseCard(
                     day: 3,
                     dayWorkOut: scheduleLevels.day3!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day4 != null)
                   ExerciseCard(
                     day: 4,
                     dayWorkOut: scheduleLevels.day4!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day5 != null)
                   ExerciseCard(
                     day: 5,
                     dayWorkOut: scheduleLevels.day5!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day6 != null)
                   ExerciseCard(
                     day: 6,
                     dayWorkOut: scheduleLevels.day6!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
                 const SizedBox(height: 20),
                 if (scheduleLevels.day7 != null)
                   ExerciseCard(
                     day: 7,
                     dayWorkOut: scheduleLevels.day7!,
+                     backgroundColor: Color.fromARGB(255, 236, 101, 101),  // Corrected line
                   ),
               ],
             ),
