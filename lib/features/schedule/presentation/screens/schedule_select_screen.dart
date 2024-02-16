@@ -45,14 +45,15 @@ class _ScheduleSelectScreenState extends State<ScheduleSelectScreen> {
                   },
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                     backgroundColor: Color.fromARGB(255, 41, 171, 226),
+                    backgroundColor: const Color.fromARGB(255, 41, 171, 226),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                   child: Text(
                     "Beginner",
-                    style: kInputFieldText.copyWith(color: Color.fromARGB(255, 14, 13, 13)),
+                    style: kInputFieldText.copyWith(
+                        color: const Color.fromARGB(255, 14, 13, 13)),
                   ),
                 ),
               ),
@@ -68,14 +69,15 @@ class _ScheduleSelectScreenState extends State<ScheduleSelectScreen> {
                   },
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                    backgroundColor:Color.fromARGB(255, 255, 94, 77),
+                    backgroundColor: const Color.fromARGB(255, 255, 94, 77),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                   child: Text(
                     "Intermediate",
-                   style: kInputFieldText.copyWith(color: Color.fromARGB(255, 14, 13, 13)),
+                    style: kInputFieldText.copyWith(
+                        color: const Color.fromARGB(255, 14, 13, 13)),
                   ),
                 ),
               ),
@@ -91,14 +93,15 @@ class _ScheduleSelectScreenState extends State<ScheduleSelectScreen> {
                   },
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                    backgroundColor:  Color.fromARGB(255, 130, 204, 87),
+                    backgroundColor: const Color.fromARGB(255, 130, 204, 87),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                   child: Text(
                     "Advanced",
-                    style: kInputFieldText.copyWith(color: Color.fromARGB(255, 14, 13, 13)),
+                    style: kInputFieldText.copyWith(
+                        color: const Color.fromARGB(255, 14, 13, 13)),
                   ),
                 ),
               ),
@@ -114,14 +117,15 @@ class _ScheduleSelectScreenState extends State<ScheduleSelectScreen> {
                   },
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                    backgroundColor: Color.fromARGB(255, 253, 203, 110),
+                    backgroundColor: const Color.fromARGB(255, 253, 203, 110),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                   child: Text(
                     "Elite",
-                    style: kInputFieldText.copyWith(color: Color.fromARGB(255, 14, 13, 13)),
+                    style: kInputFieldText.copyWith(
+                        color: const Color.fromARGB(255, 14, 13, 13)),
                   ),
                 ),
               ),
@@ -137,14 +141,15 @@ class _ScheduleSelectScreenState extends State<ScheduleSelectScreen> {
                   },
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                    backgroundColor:Color.fromARGB(255, 175, 82, 222),
+                    backgroundColor: const Color.fromARGB(255, 175, 82, 222),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                   child: Text(
                     "Expert",
-                    style: kInputFieldText.copyWith(color: Color.fromARGB(255, 14, 13, 13)),
+                    style: kInputFieldText.copyWith(
+                        color: const Color.fromARGB(255, 14, 13, 13)),
                   ),
                 ),
               ),
